@@ -1,3 +1,3 @@
 # App Center SDK for cpp
 
-Unofficial SDK for the [App Center](https://appcenter.ms/) cpp.
+Unofficial cpp SDK for [App Center](https://appcenter.ms/).
