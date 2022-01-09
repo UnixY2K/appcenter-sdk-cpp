@@ -9,9 +9,9 @@ impl_dir = host_machine.system()
 
 appcenter_sdk_impl_src_dir = 'impl' / impl_dir
 
-if fs.is_dir(impl)
-    subdir(host_machine.system())
+if fs.is_dir(impl_dir)
+    subdir(impl_dir)
 else
-    message('platform' + host_machine.system() + 'not supported, aborting')
+    message('platform' + impl_dir + 'not supported, aborting')
     assert(false)
 endif
