@@ -1,2 +1,2 @@
-# just uncomment the sample app that you want to test
+# just comment the sample app that you don´t want to test
 subdir('demo')

@@ -11,12 +11,15 @@ catch2_dep = dependency(
                 fallback: ['catch2', 'catch2_dep']
 )
 
-# example dependency
-#terminalpp_dep = dependency(
-#                    'terminalpp',
-#                    fallback: ['terminalpp', 'terminalpp_dep']
-#)
 
 subdir('sdk')
-subdir('test')
-subdir('samples')
+if get_option('build_tests')
+    subdir('test')
+else
+    message('Skipping tests')
+endif
+if get_option('build_samples')
+    subdir('samples')
+else
+    message('Skipping samples')
+endif

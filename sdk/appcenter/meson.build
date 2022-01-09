@@ -30,11 +30,13 @@ appcenter_sdk_lib = library('appcenter-sdk',
                         dependencies : appcenter_sdk_deps)
 
 
-appcenter_sdk_test_lib = static_library('appcenter-sdk',
-                        appcenter_sdk_sources,
-                        include_directories : appcenter_sdk_inc,
-                        cpp_args: appcenter_sdk_args,
-                        dependencies : appcenter_sdk_deps)
+if get_option('build_tests')
+    appcenter_sdk_test_lib = static_library('appcenter-sdk',
+                                appcenter_sdk_sources,
+                                include_directories : appcenter_sdk_inc,
+                                cpp_args: appcenter_sdk_args,
+                                dependencies : appcenter_sdk_deps)
+endif
                         
 
 appcenter_sdk_dep = declare_dependency(

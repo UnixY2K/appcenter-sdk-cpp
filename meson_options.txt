@@ -1,0 +1,2 @@
+option('build_tests', type : 'boolean', value: false, description: 'Build unit tests and static library needed for them')
+option('build_samples', type : 'boolean', value: false, description: 'Build sample demos of the library')
