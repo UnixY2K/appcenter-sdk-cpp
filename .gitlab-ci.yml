@@ -75,7 +75,7 @@ lint-test-job:   # This job also runs in the test stage.
   dependencies:
     - build-job
   script:
-    - pacman -Sy --noconfirm meson ninja clang perl
+    - pacman -Sy --noconfirm meson ninja clang perl util-linux-libs pkgconf
     - cd builddir
     - ninja scan-build
 
