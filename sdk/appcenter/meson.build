@@ -10,6 +10,13 @@ appcenter_sdk_deps = []
 
 subdir('impl')
 
+# utilities
+appcenter_sdk_utilities = [
+    'src/util/UUID.cpp',
+]
+
+appcenter_sdk_sources += appcenter_sdk_utilities
+
 # add implementation
 appcenter_sdk_sources += appcenter_sdk_impl_sources
 appcenter_sdk_args    += appcenter_sdk_impl_args
@@ -21,6 +28,14 @@ appcenter_sdk_lib = library('appcenter-sdk',
                         include_directories : appcenter_sdk_inc,
                         cpp_args: appcenter_sdk_args,
                         dependencies : appcenter_sdk_deps)
+
+
+appcenter_sdk_test_lib = static_library('appcenter-sdk',
+                        appcenter_sdk_sources,
+                        include_directories : appcenter_sdk_inc,
+                        cpp_args: appcenter_sdk_args,
+                        dependencies : appcenter_sdk_deps)
+                        
 
 appcenter_sdk_dep = declare_dependency(
     link_with: appcenter_sdk_lib,

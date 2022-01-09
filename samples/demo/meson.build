@@ -20,5 +20,3 @@ appcenter_demo_exe = executable('appcenter_demo',
                             cpp_args: appcenter_demo_args,
                             dependencies: appcenter_demo_deps,
                             link_with: appcenter_demo_link)
-
-test('appcenter demo test', appcenter_demo_exe)
