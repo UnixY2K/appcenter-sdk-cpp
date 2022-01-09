@@ -3,5 +3,11 @@
 
 namespace appcenter {
 std::string getPlatform();
-void startAppCenter(std::string appSecret, Services_t services);
+namespace services {
+void configure();
+void configure(std::string appSecret);
+bool isConfigured();
+void start(std::string appSecret, Services_t services);
+void start(Services_t services);
+} // namespace services
 } // namespace appcenter

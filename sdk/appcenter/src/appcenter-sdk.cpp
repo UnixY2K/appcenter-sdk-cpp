@@ -6,8 +6,15 @@
 namespace appcenter {
 
 extern "C" {
+appcenterAPI void configure(std::string appSecret) {
+	services::configure(appSecret);
+}
+appcenterAPI bool isConfigured() { return services::isConfigured(); }
 appcenterAPI void start(std::string appSecret, Services_t services) {
-	startAppCenter(appSecret, services);
+	services::start(appSecret, services);
+}
+appcenterAPI void startServices(Services_t services) {
+	services::start(services);
 }
 }
 
