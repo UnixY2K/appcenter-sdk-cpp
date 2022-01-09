@@ -31,7 +31,7 @@ stages:          # List of stages for jobs, and their order of execution
 config-job:
   stage: setup
   script:
-    - pacman -Sy --noconfirm meson ninja clang catch2 git
+    - pacman -Sy --noconfirm meson ninja clang catch2 git util-linux-libs pkgconf
     - meson builddir -Dbuild_tests=true
   artifacts:
     expire_in: 1 hour
