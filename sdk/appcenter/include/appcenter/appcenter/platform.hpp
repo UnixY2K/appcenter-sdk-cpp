@@ -59,6 +59,8 @@ void setUserId(const std::string &userId);
 
 /**
  * @brief sets the country code
+ * 
+ * @param countryCode the two-letter ISO country code
  */
 void setCountryCode(const std::string &countryCode);
 
