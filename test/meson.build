@@ -1,11 +1,10 @@
 test_sources = [
-    'appcenter/source.cpp',
-    'appcenter/util/UUIDtest.cpp',
+    'appcenter/source.cpp'
 ]
 
 test_dependencies = [
     catch2_dep,
-    appcenter_sdk_dep,
+    appcenter_sdk_dep
 ]
 
 testexe = executable('testexe', test_sources,

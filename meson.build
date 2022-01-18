@@ -12,6 +12,12 @@ catch2_dep = dependency(
 )
 
 
+cpp_libuuid_dep = dependency(
+                'cpp_libuuid',
+                fallback: ['cpp_libuuid', 'cpp_libuuid_dep']
+)
+
+
 subdir('sdk')
 if get_option('build_tests')
     subdir('test')

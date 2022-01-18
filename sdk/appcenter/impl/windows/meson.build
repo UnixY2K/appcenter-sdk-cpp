@@ -1,6 +1,5 @@
 impl_sources = [
     'src/windowsImpl.cpp',
-    'src/util/uuid.cpp',
 ]
 
 foreach src : impl_sources
