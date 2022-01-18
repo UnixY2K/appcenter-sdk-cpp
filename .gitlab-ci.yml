@@ -60,7 +60,7 @@ unit-test-job:   # This job runs in the test stage.
   script:
     - pacman -Sy --noconfirm meson clang
     - cd builddir 
-    - ./test/testexe --reporter xml > meson-logs/testlog.junit.xml
+    - ./test/testexe --reporter junit > meson-logs/testlog.junit.xml
   artifacts:
     when: always
     expire_in: 1 hour

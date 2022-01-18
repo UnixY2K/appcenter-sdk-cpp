@@ -6,14 +6,14 @@ appcenter_sdk_sources = [
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []
-appcenter_sdk_deps = []
+appcenter_sdk_deps = [
+    cpp_libuuid_dep
+]
 
 subdir('impl')
 
 # utilities
-appcenter_sdk_utilities = [
-    'src/util/UUID.cpp',
-]
+appcenter_sdk_utilities = []
 
 appcenter_sdk_sources += appcenter_sdk_utilities
 
