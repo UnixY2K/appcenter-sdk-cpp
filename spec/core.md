@@ -12,6 +12,13 @@ on the device, this is the following list of information that the SDK needs as r
 does not make hard assumptions about the target platform/device so some data
 is not generally aivailable like OsName or app version
 
+### Headers request data
+
+| Name           | Type   | example       | Description                          |
+| -------------- | ------ | ------------- | ------------------------------------ |
+| App-Secret     | String |               | App Secret unique key for the app    |
+| Install-ID     | String |               | UUID install ID to differentiate it  |
+
 ### Ingestion Data
 
 ---
