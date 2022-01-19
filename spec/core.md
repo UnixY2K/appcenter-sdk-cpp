@@ -21,11 +21,8 @@ is not generally aivailable like OsName or app version
 
 ### Ingestion Data
 
----
-
 **Required Data** for Ingestion
 
----
 
 | Name           | example       | Description                          |
 | -------------- | ------------- | ------------------------------------ |
@@ -41,11 +38,7 @@ is not generally aivailable like OsName or app version
 > The time zone offset includes daylight savings time.
 > on Linux the os name is the Distro Name and the version is the kernel version/name
 
----
-
 **Non required/optional data** for Ingestion
-
----
 
 | Name                    | example              | Description                      |
 | ----------------------- | -------------------- | -------------------------------- |
@@ -62,22 +55,14 @@ is not generally aivailable like OsName or app version
 | appVersion              | 1.1.42               | version of the application       |
 | appNamespace            | com.company.app      | App package identifier           |
 
----
-
 **Specific Mobile Data** for Ingestion
-
----
 
 | Name                    | example              | Description                      |
 | ----------------------- | -------------------- | -------------------------------- |
 | carrierName             | Verizon              | Carrier name if applicable       |
 | carrierCountry          |                      | Country of the cell provider     |
 
----
-
 **Specific Live Update Data** for Ingestion
-
----
 
 | Name                    | example              | Description                      |
 | ----------------------- | -------------------- | -------------------------------- |
@@ -85,8 +70,6 @@ is not generally aivailable like OsName or app version
 | liveUpdateDeploymentKey | Production           | the identifier of the enviroment |
 | liveUpdatePackageHash   |                      | hash of all files of the app     |
 | wrapperRuntimeVersion   |                      | version of the wrapper framework |
-
----
 
 **Miscellaneous Data** for Ingestion
 
