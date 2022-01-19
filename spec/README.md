@@ -9,7 +9,7 @@ on some API methods.
 
 ## App Center Core
 
-At the Core App Center SDK needs the following components, that will be discused on [core spec](core.md).
+At the Core App Center SDK needs the following components, that will be discused on [core spec](core/core.md).
 
 - Startup method.
 - Service utilities and interfaces for all the sub-services.
