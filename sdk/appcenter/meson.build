@@ -3,6 +3,7 @@ appcenter_sdk_inc = include_directories('include')
 appcenter_sdk_sources = [
     'src/appcenter.cpp',
     'src/appcenter-sdk.cpp',
+    'src/appcenter/core/logger.cpp',
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []

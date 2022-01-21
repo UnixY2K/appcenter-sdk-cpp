@@ -11,12 +11,12 @@ process
 
 ## Core Logger
 
-App Center SDK [Logger](logger) library that is used by the SDK itself across all
+App Center SDK [Logger](logger.md) library that is used by the SDK itself across all
 its components, useful for capturing logs from the SDK.
 
 - Startup method.
 - Service utilities and interfaces for all the sub-services.
-- Configuration and logging.
+- Configuration.
 - Network Services and API Ingestion.
 - Library exports/API for the programs which use this SDK.
 - App Secret handler.

@@ -31,13 +31,17 @@ App Center Logger have the following list of required methods:
 
 > all the log methods have a tag and message parameter
 
-| Method    | Description                         |
-| --------- | ----------------------------------- |
-| getLogTag | Get the Log Tag for the current SDK |
-| setLogTag | Set the Log Tag for the current SDK |
-| verbose   | Log verbose message                 |
-| debug     | Log debug message                   |
-| info      | Log info message                    |
-| warn      | Log warn message                    |
-| error     | Log error message                   |
-| assert    | Log assert message                  |
+| Method      | Description                         |
+| ----------- | ----------------------------------- |
+| getLogger   | Get the internal logger used        |
+| setLogger   | Set the internal logger to use      |
+| setLogLevel | Set the log level used by the SDK   |
+| getLogLevel | Get the log level used by the SDK   |
+| getLogTag   | Get the Log Tag for the current SDK |
+| setLogTag   | Set the Log Tag for the current SDK |
+| verbose     | Log verbose message                 |
+| debug       | Log debug message                   |
+| info        | Log info message                    |
+| warn        | Log warn message                    |
+| error       | Log error message                   |
+| assert      | Log assert message                  |
