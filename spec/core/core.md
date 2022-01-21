@@ -6,14 +6,13 @@ utils or another libraries needed for the implementation
 ## Ingestion Data
 
 App Center SDK collects and send data to App Center, this data is processed by
-the Ingestion engine, this is the list of the Ingestion data that the SDK process
-
-- [Ingestion](ingestion.md)
+the [Ingestion](ingestion.md) engine, this is the list of the Ingestion data that the SDK
+process
 
 ## Core Logger
 
-- Custom properties
-- Test cloud
+App Center SDK [Logger](logger) library that is used by the SDK itself across all
+its components, useful for capturing logs from the SDK.
 
 - Startup method.
 - Service utilities and interfaces for all the sub-services.
