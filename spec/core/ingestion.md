@@ -18,7 +18,6 @@ is not generally aivailable like OsName or app version
 
 ### **Required Data** for Ingestion
 
-
 | Name           | example       | Description                          |
 | -------------- | ------------- | ------------------------------------ |
 | sdkName        | appcenter.ios | SDK and platform                     |
