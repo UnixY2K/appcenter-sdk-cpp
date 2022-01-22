@@ -1,4 +1,3 @@
-#include "appcenter/common/AppCenterLog.hpp"
 #include <appcenter/core/logger.hpp>
 #include <iostream>
 #include <ostream>
@@ -38,6 +37,11 @@ void Logger::error(std::string tag, std::string message) {
 
 void Logger::assert(std::string tag, std::string message) {
 	log(LogLevel::Assert, tag, message);
+}
+
+const std::string Logger::getMessageWithTag(std::string tag,
+                                            std::string message) {
+	return tag + ": " + message;
 }
 
 void Logger::log(LogLevel level, std::string tag, std::string message) {
