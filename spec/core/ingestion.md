@@ -1,7 +1,8 @@
 # SDK Ingestion data
 
 the core services need at least provide basic information about the App Center information
-of the device, this is the following list of information that the SDK needs as required
+of the device, this is the following list of information that the SDK needs as required,
+you can check more about the requests format on [requests](requests.md)
 
 > some of the parameters can/needs to be specified by the application as this SDK
 does not make hard assumptions about the target platform/device so some data
@@ -36,7 +37,7 @@ is not generally aivailable like OsName or app version
 
 | Name                    | example              | Description                      |
 | ----------------------- | -------------------- | -------------------------------- |
-| timestamp               | 2017-03-13T18:05:42Z | Log timestamp                    |
+| timestamp               | 2017-03-13T18:05:42Z | Log timestamp (ISO-8601)         |
 | sid                     |                      | Session ID                       |
 | userId                  |                      | Required to track users with logs|
 | wrapperSdkVersion       | Xamarin.Android      | the version of the wrapper SDK   |
