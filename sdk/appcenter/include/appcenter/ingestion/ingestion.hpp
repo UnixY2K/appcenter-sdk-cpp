@@ -2,7 +2,7 @@
 #include <appcenter/http/serviceCall.hpp>
 #include <appcenter/http/serviceCallback.hpp>
 #include <appcenter/ingestion/models/logContainer.hpp>
-#include <appcenter/util/UUID.hpp>
+#include <libuuid/UUID.hpp>
 #include <string>
 
 namespace appcenter {
@@ -24,7 +24,7 @@ class Ingestion {
 	 * @throws std::invalid_argument if callback is null.
 	 */
 	virtual http::ServiceCall *
-	sendAsync(std::string appSecret, util::UUID installId,
+	sendAsync(std::string appSecret, libUUID::UUID installId,
 	          appcenter::ingestion::model::LogContainer logContainer,
 	          appcenter::http::ServiceCallback callback) = 0;
 
