@@ -7,7 +7,7 @@ App Center SDK does the request to the App Center web API when it is allowed to 
 the basic request format is the following:
 
 - Method: POST
-- URL: https://in.appcenter.ms
+- URL: <https://in.appcenter.ms>
 - API Path: /logs?api-version=1.0.0
 - Content-Type: application/json
 - Headers:
@@ -48,23 +48,22 @@ the basic request format is the following:
  > there is another flags like `jailbreak` or live update that can be sent but in this
 SDK implementation they do not have sense, if you require those flags you can use interop,
 with the SDK that haves that feature.
-
 > all the data inside "device" is provided by the SDK Ingestion engine, however some
 values can/(need to) be overwritten using the API
-
 > the values sorrounding by `[]` are optional, but the values inside `<>` are required,
 as for the `()` is for specify an exception like the integer values or the only mobile
 
 ## Request types format
 
 > the additional data is sent after the `device` object, it changes depending on the type
-
 > the SDK can send multiple `"log objects"` in the same request, this can be used for
 example when sending events.
 
 the list of the supported `types` by this SDK are:
+
 - `"startService"`: when the SDK starts a service, sends the `service` array with the
   services started, example:
+
   ```json
     "services": [
         "Analytics",
@@ -72,6 +71,7 @@ the list of the supported `types` by this SDK are:
         "Distribute"
     ]
   ```
+
 - `"startSession"` when the SDK session starts, does not send any additional data
 - `"event"` for any event data created using the SDK itself, it sends the following data:
   - `"name"`: the name of the event
@@ -87,6 +87,7 @@ the list of the supported `types` by this SDK are:
     - `"name"`: the name of the property
     - `"value"`: the value of the property
   - example of the data sent:
+
     ```json
         "name": "Color event",
         "id": "8ded3245-a056-44b4-a1c7-07f3617ebbfa",
@@ -106,11 +107,11 @@ the App Center web service will return a response with the following format:
 - Status: HTTP status code
 - Content-Type: application/json
 - body: the response body with additional information
-    - `"status"`: the result of the request, it is a String with the result/error,
+  - `"status"`: the result of the request, it is a String with the result/error,
     useful for debugging
-    - `"validDiagnosticsIDS"`: an array with the valid diagnostic ids, unused.
-    - `"validDiagnosticsIDs"`: an array with the throttled diagnostic ids, unused.
-    - `"correlationId"`: the correlation id of the request, unused.
+  - `"validDiagnosticsIDS"`: an array with the valid diagnostic ids, unused.
+  - `"validDiagnosticsIDs"`: an array with the throttled diagnostic ids, unused.
+  - `"correlationId"`: the correlation id of the request, unused.
 
 example of the response
 
