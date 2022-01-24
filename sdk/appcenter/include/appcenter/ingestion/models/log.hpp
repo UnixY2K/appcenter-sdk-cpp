@@ -1,16 +1,14 @@
 #pragma once
 #include <appcenter/common/Device.hpp>
 #include <appcenter/util/Date.hpp>
-#include <appcenter/util/UUID.hpp>
+#include <libuuid/UUID.hpp>
 //
 #include <any>
 #include <optional>
 #include <set>
 #include <string>
 
-namespace appcenter {
-namespace ingestion {
-namespace model {
+namespace appcenter::ingestion::model {
 /**
  * @brief Log class.
  * @remark This interface needs to be JSON serializable.
@@ -41,14 +39,14 @@ class Log {
 	 *
 	 * @return util::UUID
 	 */
-	virtual util::UUID getSid() = 0;
+	virtual libUUID::UUID getSid() = 0;
 
 	/**
 	 * @brief Set the Sid value
 	 *
 	 * @param sid the Sid value to set
 	 */
-	virtual void setSid(util::UUID sid) = 0;
+	virtual void setSid(libUUID::UUID sid) = 0;
 
 	/**
 	 * @brief Get the DistributionGroupId value
@@ -123,6 +121,4 @@ class Log {
 
 	virtual ~Log() = 0;
 };
-} // namespace model
-} // namespace ingestion
-} // namespace appcenter
+} // namespace appcenter::ingestion::model
