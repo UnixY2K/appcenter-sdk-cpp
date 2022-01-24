@@ -14,6 +14,7 @@ the basic request format is the following:
   - App-Secret: `App Secret`
   - Install-ID: `Install ID`
 - Body: an object with the request data, it contains a `"logs"` object which is an array
+
  ```json
     {
         "logs": [

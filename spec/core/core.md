@@ -9,6 +9,11 @@ App Center SDK collects and send data to App Center, this data is processed by
 the [Ingestion](ingestion.md) engine, this is the list of the Ingestion data that the SDK
 process
 
+## Requests format
+
+App Center SDK sends requests to an specific endpoint, depending on the type of service,
+it can use different endpoints, and body format, you can check more in [Requests](requests.md)
+
 ## Core Logger
 
 App Center SDK [Logger](logger.md) library that is used by the SDK itself across all
