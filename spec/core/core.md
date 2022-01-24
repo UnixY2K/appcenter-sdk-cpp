@@ -14,6 +14,11 @@ process
 App Center SDK sends requests to an specific endpoint, depending on the type of service,
 it can use different endpoints, and body format, you can check more in [Requests](requests.md)
 
+## Channels
+
+A [channel](channel.md) is a way to control the output of the SDK and its services,
+also it helps with their Logs(ingestion data) persistence, and their priority.
+
 ## Core Logger
 
 App Center SDK [Logger](logger.md) library that is used by the SDK itself across all

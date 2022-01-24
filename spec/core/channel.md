@@ -10,7 +10,7 @@ The flags are used to control the channel behavior and priority,
 
 | name              | value |
 | ----------------  | ----- |
-| NORMAL            | 0x01  | 
+| NORMAL            | 0x01  |
 | CRITICAL          | 0x02  |
 | DEFAULT           | 0x01  |
 | PERSISTENCE_MASK  | 0xFF  |
