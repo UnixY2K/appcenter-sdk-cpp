@@ -1,11 +1,11 @@
 #pragma once
-#include <appcenter/common/LogLevel.hpp>
+#include <appcenter/core/logger.hpp>
 #include <appcenter/service/services.hpp>
 #include <future>
 #include <string>
 
 // GUID
-#include <appcenter/util/UUID.hpp>
+#include <libuuid/UUID.hpp>
 
 namespace appcenter {
 namespace SDK {
@@ -18,13 +18,14 @@ const std::string &getErrorMessage();
  *
  * @return the Platform Log Level
  */
-common::LogLevel getPlatformLogLevel();
+appcenter::core::logging::LogLevel getPlatformLogLevel();
+
 /**
  * @brief Set the Platform Log Level object
  *
  * @param logLevel the Platform Log Level
  */
-void setPlatformLogLevel(common::LogLevel level);
+void setPlatformLogLevel(appcenter::core::logging::LogLevel level);
 
 /**
  * @brief Get if Network requests are allowed
@@ -45,7 +46,7 @@ void setNetworkAllowed(bool allowed);
  * @brief return the InstallID asynchronously
  *
  */
-std::future<appcenter::util::UUID> getInstallIdAsync();
+std::future<libUUID::UUID> getInstallIdAsync();
 
 /**
  * @brief sets the Log URL
@@ -59,7 +60,7 @@ void setUserId(const std::string &userId);
 
 /**
  * @brief sets the country code
- * 
+ *
  * @param countryCode the two-letter ISO country code
  */
 void setCountryCode(const std::string &countryCode);
