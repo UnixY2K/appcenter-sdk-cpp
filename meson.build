@@ -17,6 +17,10 @@ cpp_libuuid_dep = dependency(
                 fallback: ['cpp_libuuid', 'cpp_libuuid_dep']
 )
 
+restclient_cpp_dep = dependency(
+                'restclient_cpp',
+                fallback: ['restclient-cpp', 'restclient_cpp_dep']
+)
 
 subdir('sdk')
 if get_option('build_tests')
