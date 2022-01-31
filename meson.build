@@ -1,26 +1,35 @@
 project(
     'appcenter-sdk', 'cpp',
     default_options: ['cpp_std=c++17'],
-    version: '1.0.0 v2021',
+    version: '0.0.1 v2022',
     license: 'BSD-3'
 )
-version = '1.0.0 v2022'
 
+# catch2 for unit tests
 catch2_dep = dependency(
                 'catch2',
                 fallback: ['catch2', 'catch2_dep']
 )
 
-
+# libuuid for UUID generation
 cpp_libuuid_dep = dependency(
                 'cpp_libuuid',
                 fallback: ['cpp_libuuid', 'cpp_libuuid_dep']
 )
 
+# nlohmann json for serialization in the SDK
+nlohmann_json_dep = dependency(
+                'nlohmann_json',
+                fallback: ['nlohmann_json', 'nlohmann_json_dep']
+)
+
+# resclient-cpp for the SDK ingestion
 restclient_cpp_dep = dependency(
                 'restclient_cpp',
                 fallback: ['restclient-cpp', 'restclient_cpp_dep']
 )
+
+
 
 subdir('sdk')
 if get_option('build_tests')
