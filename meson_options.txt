@@ -1,3 +1,4 @@
 option('build_tests', type : 'boolean', value: false, description: 'Build unit tests and static library needed for them')
 option('test_report', type : 'boolean', value: false, description: 'run unit tests with junit report output')
 option('build_samples', type : 'boolean', value: false, description: 'Build sample demos of the library')
+option('appcenter_sample_app_secret', type : 'string', value: '', description: 'App Center secret for sample apps')
