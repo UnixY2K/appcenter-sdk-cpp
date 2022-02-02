@@ -1,4 +1,10 @@
-appcenter_sdk_inc = include_directories('include')
+appcenter_sdk_api_inc = include_directories('include')
+
+appcenter_sdk_inc = [
+    appcenter_sdk_api_inc,
+    # private include
+    include_directories('private'),
+]
 
 appcenter_sdk_sources = [
     'src/appcenter.cpp',
@@ -42,5 +48,5 @@ endif
 
 appcenter_sdk_dep = declare_dependency(
     link_with: appcenter_sdk_lib,
-    include_directories: appcenter_sdk_inc
+    include_directories: appcenter_sdk_api_inc
 )
