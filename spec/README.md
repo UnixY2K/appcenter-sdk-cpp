@@ -23,14 +23,15 @@ At the Core App Center SDK needs the following components, that will be discused
 App Center SDK may/will need to expose some internal utilites to its internal components
 An example of this services are the following:
 
-- Util methods like UUID generation.
+- Util methods like UUID generation. [libuuid](https://github.com/ninjaoflight/cpp-libuuid)
 - A Date library.
-- A JSon parsing library.
-- Some kind of HTTP request library.
+- A JSON parsing library. [nlohmann-json](https://json.nlohmann.me/)
+- HTTP request library. [restclient-cpp(fork)](https://github.com/ninjaoflight/restclient-cpp)
 - A internal Logger and error mechanism.
 - Platform Specific information collector.
 - Exception handling/ error reporting mechanism.
 - SQLite database library.
 - Test Cloud checker.
 - SDK Information.
-- App Secret provider.
+- App Secret provider. (internal, app secrets implemented by user)
+- Unit testing library [catch2](https://github.com/catchorg/Catch2)
