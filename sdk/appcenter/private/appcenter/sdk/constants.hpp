@@ -1,6 +1,6 @@
 #pragma once
 #include <string_view>
-#include <appcenter/macros.hpp>
+#include <appcenter/sdk/macros.hpp>
 
 
 namespace appcenter::constants{

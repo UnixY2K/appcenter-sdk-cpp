@@ -1,4 +1,4 @@
-#include <appcenter/ingestion/device.hpp>
+#include <appcenter/sdk/ingestion/device.hpp>
 
 namespace appcenter::core::ingestion {
 

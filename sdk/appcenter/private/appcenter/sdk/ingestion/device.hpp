@@ -1,6 +1,6 @@
 #pragma once
 
-#include <appcenter/constants.hpp>
+#include <appcenter/sdk/constants.hpp>
 #include <chrono>
 #include <string>
 #include <string_view>
