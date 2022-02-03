@@ -7,9 +7,12 @@ appcenter_sdk_inc = [
 ]
 
 appcenter_sdk_sources = [
+    # API sources
     'src/appcenter.cpp',
     'src/appcenter-sdk.cpp',
     'src/appcenter/core/logger.cpp',
+    # SDK Implementation sources
+    'src/appcenter/ingestion/device.cpp',
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []
