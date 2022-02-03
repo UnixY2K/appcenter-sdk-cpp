@@ -1,9 +1,7 @@
 #pragma once
 #include <string_view>
-#include <appcenter/sdk/macros.hpp>
 
-
-namespace appcenter::constants{
+namespace appcenter::sdk::constants{
     constexpr std::string_view sdkName = "appcenter.native";
     #ifdef APPCENTER_SDK_VERSION
     constexpr std::string_view sdkVersion = APPCENTER_SDK_VERSION;

@@ -5,7 +5,7 @@
 #include <string>
 #include <string_view>
 
-namespace appcenter::core::ingestion {
+namespace appcenter::sdk::ingestion {
 /**
  * Contains the Device information.
  *

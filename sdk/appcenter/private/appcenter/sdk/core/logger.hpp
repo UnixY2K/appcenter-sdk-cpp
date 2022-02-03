@@ -3,7 +3,7 @@
 #include <iosfwd>
 #include <string>
 
-namespace appcenter::core::logging {
+namespace appcenter::sdk::core::logging {
 // Log Level threshold for logs emmited by the SDK.
 enum class LogLevel {
 	// SDK emits all possible level of logs.

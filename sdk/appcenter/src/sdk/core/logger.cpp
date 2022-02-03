@@ -1,8 +1,8 @@
-#include <appcenter/core/logger.hpp>
+#include <appcenter/sdk/core/logger.hpp>
 #include <iostream>
 #include <ostream>
 
-namespace appcenter::core::logging {
+namespace appcenter::sdk::core::logging {
 std::ostream &Logger::getLogger() { return *m_logger; }
 
 void Logger::setLogger(std::ostream &logger) { m_logger = &logger; }
@@ -55,4 +55,4 @@ void Logger::log(LogLevel level, std::string tag, std::string message) {
 		}
 	}
 }
-} // namespace appcenter::core::logging
+} // namespace appcenter::sdk::core::logging

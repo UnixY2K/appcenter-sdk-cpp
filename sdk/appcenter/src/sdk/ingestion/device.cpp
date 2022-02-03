@@ -1,6 +1,6 @@
 #include <appcenter/sdk/ingestion/device.hpp>
 
-namespace appcenter::core::ingestion {
+namespace appcenter::sdk::ingestion {
 
 const std::string_view Device::getSdkName() const { return sdkName; }
 void Device::setSdkName(const std::string &sdkName) { this->sdkName = sdkName; }
@@ -80,4 +80,4 @@ void Device::setAppNamespace(const std::string &appNamespace) {
 	this->appNamespace = appNamespace;
 }
 
-} // namespace appcenter::core::ingestion
+} // namespace appcenter::sdk::ingestion

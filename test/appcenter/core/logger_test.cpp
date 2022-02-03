@@ -1,7 +1,7 @@
-#include <appcenter/core/logger.hpp>
+#include <appcenter/sdk/core/logger.hpp>
 #include <catch2/catch.hpp>
 
-using namespace appcenter::core::logging;
+using namespace appcenter::sdk::core::logging;
 
 // TODO: implement proper tests
 TEST_CASE("AppCenter::core::logging", "[Logger]") {
