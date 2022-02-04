@@ -7,6 +7,7 @@
 #include <optional>
 #include <set>
 #include <string>
+#include <string_view>
 
 namespace appcenter::sdk::ingestion::model {
 /**
@@ -14,86 +15,87 @@ namespace appcenter::sdk::ingestion::model {
  * @remark This interface needs to be JSON serializable.
  */
 class Log {
-    util::Date timestamp;
-    libUUID::UUID sid;
-    std::string distributionGroupId;
-    std::string userID;
+	util::Date timestamp;
+	libUUID::UUID sid;
+	std::string distributionGroupId;
+	std::string userID;
 	Device device;
+
   public:
 	/**
 	 * @brief Get the Type value
 	 *
 	 * @return the Type value
 	 */
-	virtual std::string getType() = 0;
+	virtual const std::string_view getType() const = 0;
 	/**
 	 * @brief Get the Timestamp value
 	 *
 	 */
-	virtual util::Date getTimestamp() = 0;
+	const util::Date& getTimestamp() const;
 
 	/**
 	 * @brief Set the Timestamp value
 	 *
 	 * @param timestamp
 	 */
-	virtual void setTimestamp(util::Date timestamp) = 0;
+	void setTimestamp(const util::Date &timestamp);
 
 	/**
 	 * @brief Get the Sid value
 	 *
 	 * @return util::UUID
 	 */
-	virtual libUUID::UUID getSid() = 0;
+	const libUUID::UUID& getSid() const;
 
 	/**
 	 * @brief Set the Sid value
 	 *
 	 * @param sid the Sid value to set
 	 */
-	virtual void setSid(libUUID::UUID sid) = 0;
+	void setSid(const libUUID::UUID &sid);
 
 	/**
 	 * @brief Get the DistributionGroupId value
 	 *
 	 * @return the DistributionGroupId value
 	 */
-	virtual std::string getDistributionGroupId() = 0;
+	const std::string_view getDistributionGroupId() const;
 
 	/**
 	 * @brief Set the DistributionGroupId value
 	 *
 	 * @param distributionGroupId the DistributionGroupId value to set
 	 */
-	virtual void setDistributionGroupId(std::string distributionGroupId) = 0;
+	void setDistributionGroupId(const std::string &distributionGroupId);
 
 	/**
 	 * @brief Get the userId value
 	 *
 	 * @return the userId value
 	 */
-	virtual std::string getUserId() = 0;
+	const std::string_view getUserId() const;
 
 	/**
 	 * @brief Set the userId value
 	 *
 	 * @param userId the userId value to set
 	 */
-	virtual std::string setUserId(std::string userId) = 0;
+	void setUserId(const std::string &userId);
 
 	/**
 	 * @brief Get the Device value
 	 *
 	 * @return appcenter::common::Device
 	 */
-	virtual Device getDevice() = 0;
+	const Device &getDevice() const;
 
 	/**
 	 * @brief Set the Device object
 	 *
 	 * @param device the Device value to set
 	 */
-	virtual void setDevice(Device device) = 0;
+	void setDevice(const Device &device);
 
 	/**
 	 * @brief Adds a transmissionTargetToken that this log should be sent to.
@@ -101,29 +103,29 @@ class Log {
 	 * @param transmissionTargetToken
 	 */
 	virtual void
-	addTransmissionTargetToken(std::string transmissionTargetToken) = 0;
+	addTransmissionTargetToken(const std::string &transmissionTargetToken) = 0;
 
 	/**
 	 * @brief Gets all transmission targets that this log should be sent to.
 	 *
 	 * @return std::set<std::string>
 	 */
-	virtual std::set<std::string> getTransmissionTargetTokens() = 0;
+	virtual const std::set<std::string>& getTransmissionTargetTokens() const = 0;
 
 	/**
 	 * @brief Get the internal tag for this log.
 	 *
 	 * @return std::any or nothing if not set
 	 */
-	virtual std::optional<std::any> getTag() = 0;
+	virtual const std::optional<std::any> getTag() const = 0;
 
 	/**
 	 * @brief Set the internal tag for this log.
 	 *
 	 * @param tag tag value of nothing to reset the tag
 	 */
-	virtual void setTag(std::optional<std::any> tag) = 0;
+	virtual void setTag(const std::optional<std::any> &tag) = 0;
 
 	virtual ~Log() = 0;
 };
-} // namespace appcenter::ingestion::model
+} // namespace appcenter::sdk::ingestion::model

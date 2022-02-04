@@ -12,6 +12,7 @@ appcenter_sdk_sources = [
     'src/appcenter-sdk.cpp',
     # SDK Implementation sources
     'src/sdk/core/logger.cpp',
+    'src/sdk/ingestion/models/log.cpp',
     'src/sdk/ingestion/device.cpp',
 ]
 appcenter_sdk_args = []
