@@ -63,15 +63,6 @@ class Device {
 	const std::string_view getAppVersion() const;
 	void setAppVersion(const std::string &appVersion);
 
-	const std::string_view getAppBuild() const;
-	void setAppBuild(const std::string &appBuild);
-
-	const std::string_view getSid() const;
-	void setSid(const std::string &sid);
-
-	const std::string_view getUserId() const;
-	void setUserID(const std::string &userID);
-
 	const std::string_view getWrapperSdkVersion() const;
 	void setWrapperSdkVersion(const std::string &wrapperSdkVersion);
 
@@ -92,8 +83,5 @@ class Device {
 
 	const std::string_view getScreenSize() const;
 	void setScreenSize(const std::string &screenSize);
-
-	const std::string_view getAppNamespace() const;
-	void setAppNamespace(const std::string &appNamespace);
 };
 } // namespace appcenter::sdk::ingestion

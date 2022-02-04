@@ -26,22 +26,6 @@ void Device::setTimeZoneOffset(const Timestamp &timeZoneOffset) {
 	this->timeZoneOffset = timeZoneOffset;
 }
 
-const std::string_view Device::getAppVersion() const { return appVersion; }
-void Device::setAppVersion(const std::string &appVersion) {
-	this->appVersion = appVersion;
-}
-
-const std::string_view Device::getAppBuild() const { return appBuild; }
-void Device::setAppBuild(const std::string &appBuild) {
-	this->appBuild = appBuild;
-}
-
-const std::string_view Device::getSid() const { return sid; }
-void Device::setSid(const std::string &sid) { this->sid = sid; }
-
-const std::string_view Device::getUserId() const { return userID; }
-void Device::setUserID(const std::string &userID) { this->userID = userID; }
-
 const std::string_view Device::getWrapperSdkVersion() const {
 	return wrapperSdkVersion;
 }
@@ -73,11 +57,6 @@ void Device::setOsApiLevel(const int osApiLevel) {
 const std::string_view Device::getScreenSize() const { return screenSize; }
 void Device::setScreenSize(const std::string &screenSize) {
 	this->screenSize = screenSize;
-}
-
-const std::string_view Device::getAppNamespace() const { return appNamespace; }
-void Device::setAppNamespace(const std::string &appNamespace) {
-	this->appNamespace = appNamespace;
 }
 
 } // namespace appcenter::sdk::ingestion
