@@ -18,28 +18,28 @@ class Device {
 	std::string sdkName{constants::sdkName};
 	// sdk version
 	std::string sdkVersion{constants::sdkVersion};
-	// OS name, ex: "Windows-UWP", "Linux", "MacOSX""
-	std::string osName;
+	// OS name, ex: "Windows-UWP", "Linux", "MacOSX"", overwrite if needed
+	std::string osName{constants::platform};
 	// OS version, ex: "Ubuntu (kernel 4.4.0-53-generic), 64-bit", "Windows 10",
 	// "Mac OSX 10.12.6"
-	std::string osVersion;
+	std::string osVersion{constants::unknown_value};
 	// system locale, ex: "en-US"
-	std::string locale;
+	std::string locale{constants::unknown_locale_iso_code};
 	Timestamp timeZoneOffset;
-	std::string appVersion;
-	std::string appBuild;
+	// std::string appVersion;  // SDK instantiation specific
+	// std::string appBuild;	// SDK instantiation specific
 	// non required data for ingestion
-	std::string sid;
-	std::string userID;
+	// std::string sid;		   // log/session specific
+	// std::string userID;	   // log/session specific
 	std::string wrapperSdkVersion{constants::wrapperSdkVersion};
 	std::string wrapperSdkName{constants::wrapperSdkName};
-	std::string model;
-	std::string oemName;
-	std::string osBuild;
+	std::string model{constants::unknown_value};
+	std::string oemName{constants::unknown_value};
+	std::string osBuild{constants::unknown_value};
 	// -1 means unknown
 	int osApiLevel = -1;
-	std::string screenSize;
-	std::string appNamespace;
+	std::string screenSize{constants::unknown_value};
+	// std::string appNamespace; // SDK instantiation specific
 
   public:
 	const std::string_view getSdkName() const;
@@ -96,4 +96,4 @@ class Device {
 	const std::string_view getAppNamespace() const;
 	void setAppNamespace(const std::string &appNamespace);
 };
-} // namespace appcenter::core::ingestion
+} // namespace appcenter::sdk::ingestion
