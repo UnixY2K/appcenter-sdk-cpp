@@ -21,6 +21,10 @@ appcenter_sdk_deps = [
     cpp_libuuid_dep
 ]
 
+appcenter_sdk_args += [
+    '-DAPPCENTER_SDK_VERSION="' + appcenter_sdk_version + '"',
+]
+
 subdir('impl')
 
 # utilities

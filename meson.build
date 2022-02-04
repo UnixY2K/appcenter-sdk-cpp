@@ -5,6 +5,9 @@ project(
     license: 'BSD-3'
 )
 
+appcenter_sdk_ver = meson.project_version()
+appcenter_sdk_version = appcenter_sdk_ver
+
 # catch2 for unit tests
 catch2_dep = dependency(
                 'catch2',
