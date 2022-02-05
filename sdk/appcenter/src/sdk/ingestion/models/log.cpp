@@ -20,5 +20,13 @@ const std::string_view Log::getUserId() const { return userID; }
 void Log::setUserId(const std::string &userID) { this->userID = userID; }
 const Device &Log::getDevice() const { return device; }
 void Log::setDevice(const Device &device) { this->device = device; }
-
+const std::any &Log::getTag() const { return tag; }
+void Log::setTag(const std::any &tag) { this->tag = tag; }
+void Log::addTransmissionTargetToken(
+    const std::string &transmissionTargetToken) {
+	transmissionTargetTokens.insert(transmissionTargetToken);
+}
+const std::set<std::string> &Log::getTransmissionTargetTokens() const {
+	return transmissionTargetTokens;
+}
 } // namespace appcenter::sdk::ingestion::model

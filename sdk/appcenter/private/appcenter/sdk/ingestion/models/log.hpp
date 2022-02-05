@@ -20,6 +20,8 @@ class Log {
 	std::string distributionGroupId;
 	std::string userID;
 	Device device;
+	std::any tag;
+	std::set<std::string> transmissionTargetTokens;
 
   public:
 	/**
@@ -32,7 +34,7 @@ class Log {
 	 * @brief Get the Timestamp value
 	 *
 	 */
-	const util::Date& getTimestamp() const;
+	const util::Date &getTimestamp() const;
 
 	/**
 	 * @brief Set the Timestamp value
@@ -46,7 +48,7 @@ class Log {
 	 *
 	 * @return util::UUID
 	 */
-	const libUUID::UUID& getSid() const;
+	const libUUID::UUID &getSid() const;
 
 	/**
 	 * @brief Set the Sid value
@@ -98,34 +100,33 @@ class Log {
 	void setDevice(const Device &device);
 
 	/**
-	 * @brief Adds a transmissionTargetToken that this log should be sent to.
-	 *
-	 * @param transmissionTargetToken
-	 */
-	virtual void
-	addTransmissionTargetToken(const std::string &transmissionTargetToken) = 0;
-
-	/**
-	 * @brief Gets all transmission targets that this log should be sent to.
-	 *
-	 * @return std::set<std::string>
-	 */
-	virtual const std::set<std::string>& getTransmissionTargetTokens() const = 0;
-
-	/**
 	 * @brief Get the internal tag for this log.
 	 *
 	 * @return std::any or nothing if not set
 	 */
-	virtual const std::optional<std::any> getTag() const = 0;
+	const std::any &getTag() const;
 
 	/**
 	 * @brief Set the internal tag for this log.
 	 *
 	 * @param tag tag value of nothing to reset the tag
 	 */
-	virtual void setTag(const std::optional<std::any> &tag) = 0;
+	void setTag(const std::any &tag);
 
-	virtual ~Log() = 0;
+	/**
+	 * @brief Adds a transmissionTargetToken that this log should be sent to.
+	 *
+	 * @param transmissionTargetToken
+	 */
+	void addTransmissionTargetToken(const std::string &transmissionTargetToken);
+
+	/**
+	 * @brief Gets all transmission targets that this log should be sent to.
+	 *
+	 * @return std::set<std::string>
+	 */
+	const std::set<std::string> &getTransmissionTargetTokens() const;
+
+	virtual ~Log();
 };
 } // namespace appcenter::sdk::ingestion::model
