@@ -1,7 +1,5 @@
 #pragma once
 #include <appcenter/private/exportAPI.hpp>
-#include <appcenter/service/services.hpp>
-#include <string>
 
 namespace appcenter::api::bindings {
 /**
