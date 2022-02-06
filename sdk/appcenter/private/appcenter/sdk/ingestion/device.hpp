@@ -15,30 +15,85 @@ namespace appcenter::sdk::ingestion {
 using Timestamp = std::chrono::time_point<std::chrono::system_clock>;
 class Device {
 	// required data
+	/**
+	 * @brief Name of the SDK.
+	 * @details Consists of the name of the SDK and the platform, e.g.
+	 * "mobilecenter.ios", "mobilecenter.android".
+	 */
 	std::string sdkName{constants::sdkName};
-	// sdk version
+	/**
+	 * @brief Version of the SDK.
+	 * @details Consists of the version of the SDK in semver format, e.g.
+	 * "1.2.0" or "0.12.3-alpha.1".
+	 */
 	std::string sdkVersion{constants::sdkVersion};
-	// OS name, ex: "Windows-UWP", "Linux", "MacOSX"", overwrite if needed
+	/**
+	 * @brief Name of the OS.
+	 * @details Os name, ex: "Windows-UWP", "Linux", "MacOSX".
+	 */
 	std::string osName{constants::platform};
-	// OS version, ex: "Ubuntu (kernel 4.4.0-53-generic), 64-bit", "Windows 10",
-	// "Mac OSX 10.12.6"
+	/**
+	 * @brief Os version.
+	 * @details Os version ex: "Ubuntu, 64-bit",
+	 * "Windows 10".
+	 */
 	std::string osVersion{constants::unknown_value};
-	// system locale, ex: "en-US"
+	/**
+	 * @brief System Locale.
+	 * @details Language code (example: en_US).
+	 */
 	std::string locale{constants::unknown_locale_iso_code};
+	/**
+	 * @brief System time zone offset.
+	 * @details The offset in minutes from UTC for the device time zone,
+	 * including daylight savings time.
+	 */
 	Timestamp timeZoneOffset;
+	//# /**
+	//#  * @brief Application version.
+	//#  * @details Application version name, e.g. "1.2.0".
+	//#  */
 	// std::string appVersion;  // SDK instantiation specific
+	// #/**
+	// # * @brief App build.
+	// # * @details App Build number (example: 42).
+	// # */
 	// std::string appBuild;	// SDK instantiation specific
 	// non required data for ingestion
 	// std::string sid;		   // log/session specific
 	// std::string userID;	   // log/session specific
 	std::string wrapperSdkVersion{constants::wrapperSdkVersion};
 	std::string wrapperSdkName{constants::wrapperSdkName};
+	/**
+	 * @brief Device model.
+	 * @details Device model (example: iPad2,3).
+	 */
 	std::string model{constants::unknown_value};
+	/**
+	 * @brief Name of the manufacturer.
+	 * @details Name of the manufacturer (example: HTC).
+	 */
 	std::string oemName{constants::unknown_value};
+	/**
+	 * @brief Os build.
+	 * @details Os build (example: Linux 4.4.0-53-generic).
+	 */
 	std::string osBuild{constants::unknown_value};
-	// -1 means unknown
+	/**
+	 * @brief OS API level.
+	 * @details API Level when applicable (example: 21), unknown is -1.
+	 */
 	int osApiLevel = -1;
+	/**
+	 * @brief Size of the screen;
+	 * @details Scren size of the device in pixels (example: 1920x1080).
+	 */
 	std::string screenSize{constants::unknown_value};
+	// /**
+	//  * @brief App Namespace.
+	//  * @details The bundle identifier, package identifier, or namespace,
+	//  * depending on the individual platforms use, e.g. com.microsoft.example.
+	//  */
 	// std::string appNamespace; // SDK instantiation specific
 
   public:
