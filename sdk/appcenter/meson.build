@@ -12,13 +12,15 @@ appcenter_sdk_sources = [
     'src/appcenter-sdk.cpp',
     # SDK Implementation sources
     'src/sdk/core/logger.cpp',
+    'src/sdk/core/platform.cpp',
     'src/sdk/ingestion/models/log.cpp',
     'src/sdk/ingestion/device.cpp',
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []
 appcenter_sdk_deps = [
-    cpp_libuuid_dep
+    cpp_libuuid_dep,
+    thread_dep
 ]
 
 appcenter_sdk_args += [

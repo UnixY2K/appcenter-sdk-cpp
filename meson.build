@@ -32,7 +32,7 @@ restclient_cpp_dep = dependency(
                 fallback: ['restclient-cpp', 'restclient_cpp_dep']
 )
 
-
+thread_dep = dependency('threads')
 
 subdir('sdk')
 if get_option('build_tests')

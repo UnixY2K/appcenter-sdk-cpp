@@ -1,43 +1,59 @@
 #pragma once
 #include <appcenter/sdk/core/logger.hpp>
 #include <appcenter/service/services.hpp>
+#include <appcenter/util/mixin/singleton.hpp>
 #include <future>
 #include <string>
+#include <string_view>
 
 // GUID
 #include <libuuid/UUID.hpp>
 
 namespace appcenter::sdk::core {
-class Platform {
+class Platform : public util::mixin::Singleton<Platform> {
+	// todo: move this to the requests/ingestion layer
+	bool networkAllowed{true};
+	// todo: create a propper install id generator
+	libUUID::UUID installId{libUUID::UUID()};
+	// todo: implement a way to change the log url in the ingestion service
+	std::string logUrl;
+	// todo: add a application configuration service
+	std::string userId;
+	std::string countryCode;
+	std::string appSecret;
+	bool configured{false};
+	// todo: add a way to change the max storage size in the ingestion service
+	size_t maxStorageSize{0};
+
   public:
 	// Error message to display for unsupported targets
-	const std::string &getErrorMessage();
+	// const std::string_view getErrorMessage();
 
 	/**
 	 * @brief Get the Platform Log Level object
 	 *
 	 * @return the Platform Log Level
 	 */
-	core::logging::LogLevel getPlatformLogLevel();
+	const core::logging::LogLevel getPlatformLogLevel() const;
 
 	/**
 	 * @brief Set the Platform Log Level object
 	 *
 	 * @param logLevel the Platform Log Level
 	 */
-	void setPlatformLogLevel(core::logging::LogLevel level);
+	void setPlatformLogLevel(const core::logging::LogLevel level);
 
 	/**
 	 * @brief Get if Network requests are allowed
 	 *
 	 */
-	bool isNetworkAllowed();
+	const bool isNetworkAllowed() const;
 
 	/**
 	 * @brief Set if Network requests are allowed
 	 *
 	 */
-	void setNetworkAllowed(bool allowed);
+	void setNetworkAllowed(const bool allowed);
 
 	// ignore PlatformIsEnabledAsync
 	// ignore PlatformSetEnabledAsync
@@ -45,8 +61,20 @@ class Platform {
 	/**
 	 * @brief return the InstallID asynchronously
 	 *
+	 * @note if the install id is not set, it will be generated
+	 *
+	 * @return the InstallID
 	 */
 	std::future<libUUID::UUID> getInstallIdAsync();
+
+	/**
+	 * @brief return the InstallID
+	 *
+	 * @note if the install id is not set, it will be generated
+	 *
+	 * @return the InstallID
+	 */
+	const libUUID::UUID getInstallId();
 
 	/**
 	 * @brief sets the Log URL
@@ -71,7 +99,7 @@ class Platform {
 	 * @return true the platform is configured
 	 * @return false the platform is not configured
 	 */
-	bool isConfigured();
+	const bool isConfigured() const;
 
 	/**
 	 * @brief configure the platform with the given app secret
@@ -80,10 +108,11 @@ class Platform {
 	 */
 	void configure(const std::string &appSecret);
 
+	// TODO: implement a propper way to start services
 	/**
 	 * @brief start the given services
 	 */
-	void start(Services_t services);
+	void start(const Services_t services);
 
 	/**
 	 * @brief start the given services
@@ -91,16 +120,23 @@ class Platform {
 	 * @param appSecret the app secret
 	 * @param services the services to start
 	 */
-	void start(const std::string &appSecret, Services_t services);
+	void start(const std::string &appSecret, const Services_t services);
 
 	/**
 	 * @brief Set the Max Storage Size for App Center
+	 *
+	 * @note the default value is 10MB, the minimum allowed is 20KB, also the
+	 * sdk rounds the size up to the next multiple of the page size. The App
+	 * Center SDK uses a page size of 4KB, finally, all the logs older than 25
+	 * days will be discarded.
 	 *
 	 * @param bytes the max storage size in bytes
 	 * @return std::future<bool> the future of the operation
 	 */
 	std::future<bool> setMaxStorageSizeAsync(size_t bytes);
 
-	void unsetInstance();
+	bool setMaxStorageSize(size_t bytes);
+
+	// void unsetInstance();
 };
 } // namespace appcenter::sdk::core
