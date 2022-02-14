@@ -32,6 +32,12 @@ restclient_cpp_dep = dependency(
                 fallback: ['restclient-cpp', 'restclient_cpp_dep']
 )
 
+# Date library
+hinnant_date_dep = dependency(
+                'hinnant_date',
+                fallback: ['hinnant-date', 'date_dep']
+)
+
 thread_dep = dependency('threads')
 
 subdir('sdk')

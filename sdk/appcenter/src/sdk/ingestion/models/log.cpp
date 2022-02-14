@@ -1,11 +1,11 @@
-#include "appcenter/sdk/ingestion/device.hpp"
+#include <appcenter/sdk/ingestion/device.hpp>
 #include <appcenter/sdk/ingestion/models/log.hpp>
-#include <appcenter/util/Date.hpp>
+#include <appcenter/sdk/util/Date.hpp>
 #include <string_view>
 
 namespace appcenter::sdk::ingestion::model {
-const util::Date &Log::getTimestamp() const { return timestamp; }
-void Log::setTimestamp(const util::Date &timestamp) {
+const util::date::Date &Log::getTimestamp() const { return timestamp; }
+void Log::setTimestamp(const util::date::Date &timestamp) {
 	this->timestamp = timestamp;
 }
 const libUUID::UUID &Log::getSid() const { return sid; }

@@ -1,6 +1,6 @@
 #pragma once
 #include <appcenter/sdk/ingestion/device.hpp>
-#include <appcenter/util/Date.hpp>
+#include <appcenter/sdk/util/Date.hpp>
 #include <libuuid/UUID.hpp>
 //
 #include <any>
@@ -15,7 +15,7 @@ namespace appcenter::sdk::ingestion::model {
  * @remark This interface needs to be JSON serializable.
  */
 class Log {
-	util::Date timestamp;
+	util::date::Date timestamp;
 	libUUID::UUID sid;
 	std::string distributionGroupId;
 	std::string userID;
@@ -34,14 +34,14 @@ class Log {
 	 * @brief Get the Timestamp value
 	 *
 	 */
-	const util::Date &getTimestamp() const;
+	const util::date::Date &getTimestamp() const;
 
 	/**
 	 * @brief Set the Timestamp value
 	 *
 	 * @param timestamp
 	 */
-	void setTimestamp(const util::Date &timestamp);
+	void setTimestamp(const util::date::Date &timestamp);
 
 	/**
 	 * @brief Get the Sid value
