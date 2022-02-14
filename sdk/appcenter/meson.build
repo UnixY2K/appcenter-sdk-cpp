@@ -22,7 +22,8 @@ appcenter_sdk_link = []
 appcenter_sdk_deps = [
     cpp_libuuid_dep,
     thread_dep,
-    hinnant_date_dep
+    hinnant_date_dep,
+    fmt_dep
 ]
 
 appcenter_sdk_args += [

@@ -1,6 +1,10 @@
 #include <appcenter/sdk/core/logger.hpp>
+#include <appcenter/sdk/util/Date.hpp>
+#include <fmt/core.h>
+#include <fmt/format.h>
 #include <iostream>
 #include <ostream>
+#include <string_view>
 
 namespace appcenter::sdk::core::logging {
 std::ostream &Logger::getLogger() { return *m_logger; }
@@ -11,48 +15,54 @@ LogLevel Logger::getLogLevel() { return m_logLevel; }
 
 void Logger::setLogLevel(LogLevel level) { m_logLevel = level; }
 
-const std::string &Logger::getLogTag() { return m_logTag; }
-
-void Logger::setLogTag(std::string logTag) { m_logTag = logTag; }
-
-void Logger::verbose(std::string tag, std::string message) {
+void Logger::verbose(const std::string_view tag,
+                     const std::string_view message) {
 	log(LogLevel::Verbose, tag, message);
 }
 
-void Logger::debug(std::string tag, std::string message) {
+void Logger::debug(const std::string_view tag, const std::string_view message) {
 	log(LogLevel::Debug, tag, message);
 }
 
-void Logger::info(std::string tag, std::string message) {
+void Logger::info(const std::string_view tag, const std::string_view message) {
 	log(LogLevel::Info, tag, message);
 }
 
-void Logger::warn(std::string tag, std::string message) {
+void Logger::warn(const std::string_view tag, const std::string_view message) {
 	log(LogLevel::Warn, tag, message);
 }
 
-void Logger::error(std::string tag, std::string message) {
+void Logger::error(const std::string_view tag, const std::string_view message) {
 	log(LogLevel::Error, tag, message);
 }
 
-void Logger::assert(std::string tag, std::string message) {
+void Logger::assert(const std::string_view tag,
+                    const std::string_view message) {
 	log(LogLevel::Assert, tag, message);
 }
 
-const std::string Logger::getMessageWithTag(std::string tag,
-                                            std::string message) {
-	return tag + ": " + message;
-}
-
-void Logger::log(LogLevel level, std::string tag, std::string message) {
+void Logger::log(const LogLevel level, const std::string_view tag,
+                 const std::string_view message) {
 	if (level >= m_logLevel) {
+		std::string logMessage = fmt::format(
+		    log_format,
+		    fmt::arg("timestamp", util::date::Date::now().to_string()),
+		    fmt::arg("level", getLogLevelName(level)), fmt::arg("tag", tag),
+		    fmt::arg("message", message));
 		if (m_logger) {
 			// TODO: implement a propper logger interface
-			*m_logger << getMessageWithTag(tag, message);
+			*m_logger << logMessage;
 		} else {
 			// by default all logs are written to stdout
-			std::cout << getMessageWithTag(tag, message) << "\n";
+			std::cout << logMessage;
 		}
 	}
 }
+
+void Logger::setLogFormat(const std::string_view format) {
+	log_format = format;
+}
+
+const std::string_view Logger::getLogFormat() const { return log_format; }
+
 } // namespace appcenter::sdk::core::logging

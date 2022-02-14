@@ -38,6 +38,12 @@ hinnant_date_dep = dependency(
                 fallback: ['hinnant-date', 'date_dep']
 )
 
+# fmt dep, when c++ 20 is generally available, we will use std::format
+fmt_dep = dependency(
+                'fmt',
+                fallback: ['fmt', 'fmt_dep']
+)
+
 thread_dep = dependency('threads')
 
 subdir('sdk')
