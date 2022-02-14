@@ -51,9 +51,6 @@ appcenterAPI const char *APPCENTER_API_GET_SDK_VERSION();
  */
 appcenterAPI int APPCENTER_API_IS_CONFIGURED();
 
-// TODO: there is not much sense to check if running in test cloud so those
-// functions are not exported
-
 /**
  * @brief Configure the SDK with an app secret.
  * @note This may be called only once per application process/handle lifetime.
