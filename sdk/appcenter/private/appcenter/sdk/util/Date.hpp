@@ -1,5 +1,4 @@
 #pragma once
-#include <bits/types/time_t.h>
 #include <chrono>
 #include <ctime>
 #include <string>
@@ -13,19 +12,19 @@ class Date {
   public:
 	static constexpr std::string_view default_format = "%Y-%m-%d %H:%M:%S";
 	Date() = delete;
-	explicit Date(const time_t timestamp);
+	explicit Date(const std::time_t timestamp);
 	explicit Date(const date_timestamp& timePoint);
 	Date(const Date &other) = default;
 	Date(Date &&other) noexcept = default;
 
 	date_timestamp getTimestamp() const;
-	time_t getTimeT() const;
+	std::time_t getTimeT() const;
 
 	std::string to_string(const std::string_view format = default_format) const;
 	static Date now();
 
 
-	Date &operator=(const time_t timestamp);
+	Date &operator=(const std::time_t timestamp);
 	Date &operator=(const date_timestamp& timePoint);
 	Date &operator=(const Date &other) = default;
 	Date &operator=(Date &&other) noexcept = default;

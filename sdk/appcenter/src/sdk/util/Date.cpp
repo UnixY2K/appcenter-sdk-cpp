@@ -5,12 +5,12 @@
 #include <date/date.h>
 
 namespace appcenter::util::date {
-Date::Date(const time_t timestamp)
+Date::Date(const std::time_t timestamp)
     : timestamp(std::chrono::system_clock::from_time_t(timestamp)) {}
 Date::Date(const date_timestamp &timePoint) : timestamp(timePoint) {}
 
 date_timestamp Date::getTimestamp() const { return timestamp; }
-time_t Date::getTimeT() const {
+std::time_t Date::getTimeT() const {
 	return std::chrono::system_clock::to_time_t(timestamp);
 }
 
@@ -24,7 +24,7 @@ Date Date::now() {
 	return Date(now);
 }
 
-Date &Date::operator=(const time_t timestamp) {
+Date &Date::operator=(const std::time_t timestamp) {
 	this->timestamp = std::chrono::system_clock::from_time_t(timestamp);
 	return *this;
 }
