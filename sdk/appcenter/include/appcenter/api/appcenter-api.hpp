@@ -1,5 +1,7 @@
 #pragma once
 #include <appcenter/private/exportAPI.hpp>
+#include <appcenter/service/IService.hpp>
+#include <appcenter/api/memory.hpp>
 
 namespace appcenter::api::bindings {
 /**
@@ -67,6 +69,22 @@ appcenterAPI void APPCENTER_API_CONFIGURE(const char *appSecret);
 appcenterAPI void APPCENTER_API_CONFIGURE_WITHOUT_APP_SECRET();
 
 // TODO: design an interface to start app center and its services
+
+/**
+ * @brief start the App Center SDK.
+ * 
+ * @param appSecret the app secret.
+ * @param services the services to start.
+ */
+appcenterAPI void APPCENTER_API_START(const char* appSecret, memory::Array_t* services);
+
+/**
+ * @brief start the App Center SDK.
+ * 
+ * @param service the service to start.
+ */
+appcenterAPI void APPCENTER_API_START_SERVICE(service::IService* service);
+
 // TODO: also, provide an C interface for the services
 
 // TODO: design an interface for custom user defined loggers(logging)
