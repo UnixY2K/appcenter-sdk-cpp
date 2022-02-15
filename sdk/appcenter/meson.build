@@ -11,12 +11,15 @@ appcenter_sdk_sources = [
     'src/appcenter/api/memory.cpp',
     'src/appcenter.cpp',
     'src/appcenter-sdk.cpp',
+    # SDK bindings
+    'src/appcenter/api/bindings.cpp',
     # SDK Implementation sources
     'src/sdk/core/logger.cpp',
     'src/sdk/core/platform.cpp',
     'src/sdk/ingestion/models/log.cpp',
     'src/sdk/ingestion/device.cpp',
     'src/sdk/util/Date.cpp',
+    'src/sdk/appcenter.cpp',
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []

@@ -127,6 +127,15 @@ class Log {
 	 */
 	const std::set<std::string> &getTransmissionTargetTokens() const;
 
+	/**
+	 * @brief compare two logs
+	 *
+	 * @param other the other log to compare to
+	 * @return true if the logs are equal
+	 * @return false if the logs are not equal
+	 */
+	virtual const bool operator==(const Log &other) const = 0;
+
 	virtual ~Log();
 };
 } // namespace appcenter::sdk::ingestion::model

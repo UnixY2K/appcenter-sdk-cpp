@@ -1,5 +1,6 @@
 #pragma once
 #include <appcenter/sdk/channel/Channel.hpp>
+#include <appcenter/service/IService.hpp>
 #include <string>
 #include <string_view>
 
@@ -8,7 +9,7 @@ namespace appcenter::sdk::service {
  * @brief Service class Interface specification.
  *
  */
-class Service {
+class Service : public appcenter::service::IService {
   public:
 	/**
 	 * @brief check whether service is enabled or not.

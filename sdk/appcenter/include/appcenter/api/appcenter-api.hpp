@@ -1,7 +1,7 @@
 #pragma once
+#include <appcenter/api/memory.hpp>
 #include <appcenter/private/exportAPI.hpp>
 #include <appcenter/service/IService.hpp>
-#include <appcenter/api/memory.hpp>
 
 namespace appcenter::api::bindings {
 /**
@@ -57,33 +57,27 @@ appcenterAPI int APPCENTER_API_IS_CONFIGURED();
  * @brief Configure the SDK with an app secret.
  * @note This may be called only once per application process/handle lifetime.
  *
- * @param appSecret the app secret.
+ * @param appSecret the app secret, null if none.
  */
 appcenterAPI void APPCENTER_API_CONFIGURE(const char *appSecret);
-
-/**
- * @brief Configure the SDK witout an app secret.
- * @note This may be called only once per application process/handle lifetime.
- *
- */
-appcenterAPI void APPCENTER_API_CONFIGURE_WITHOUT_APP_SECRET();
 
 // TODO: design an interface to start app center and its services
 
 /**
  * @brief start the App Center SDK.
- * 
+ *
  * @param appSecret the app secret.
  * @param services the services to start.
  */
-appcenterAPI void APPCENTER_API_START(const char* appSecret, memory::Array_t* services);
+appcenterAPI void APPCENTER_API_START(const char *appSecret,
+                                      memory::Array_t *services);
 
 /**
  * @brief start the App Center SDK.
- * 
+ *
  * @param service the service to start.
  */
-appcenterAPI void APPCENTER_API_START_SERVICE(service::IService* service);
+appcenterAPI void APPCENTER_API_START_SERVICE(service::IService *service);
 
 // TODO: also, provide an C interface for the services
 
@@ -127,13 +121,11 @@ appcenterAPI int
 APPCENTER_API_BLOCKING_SET_MAX_STORAGE_SIZE(int maxStorageSize);
 
 /**
- * @brief Same as APPCENTER_API_BLOCKING_SET_MAX_STORAGE_SIZE but is
- * asynchronous.
+ * @brief return the current max storage size in bytes.
  *
- * @param callback the callback to be called when the operation is done.
+ * @return int the current max storage size in bytes.
  */
-appcenterAPI int
-APPCENTER_API_ASYNC_GET_MAX_STORAGE_SIZE(void (*callback)(int result));
+appcenterAPI int APPCENTER_API_BLOCKING_GET_MAX_STORAGE_SIZE();
 
 // TODO: Add an interface for wrappers SDK, if it is in pimpl pattern is better.
 

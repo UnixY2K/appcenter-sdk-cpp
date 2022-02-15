@@ -1,9 +1,15 @@
 #pragma once
-#include <appcenter/util/mixin/abstract.hpp>
 
 namespace appcenter {
 namespace service {
 // only Service can inherit from this class
-class IService : public util::mixin::Abstract<IService> {};
+class IService {
+  protected:
+	IService() = default;
+
+  public:
+	virtual ~IService() = 0;
+};
+inline IService::~IService() = default;
 } // namespace service
 } // namespace appcenter
