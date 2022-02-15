@@ -1,5 +1,5 @@
-#include "appcenter/api/memory.hpp"
-#include "appcenter/sdk/service/service.hpp"
+#include <appcenter/api/memory.hpp>
+#include <appcenter/sdk/service/service.hpp>
 #include <cstddef>
 #include <string_view>
 #define appcenterLIBRARY_EXPORT
@@ -7,7 +7,12 @@
 #include <appcenter/sdk/appcenter.hpp>
 
 namespace appcenter::api::bindings {
-const char *copyString(const std::string_view sv) {}
+const char *copyString(const std::string_view sv) {
+	auto *str = new char[sv.size() + 1];
+	std::copy(sv.begin(), sv.end(), str);
+	str[sv.size()] = '\0';
+	return str;
+}
 
 extern "C" {
 /**
