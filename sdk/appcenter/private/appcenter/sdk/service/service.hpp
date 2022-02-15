@@ -3,7 +3,7 @@
 #include <string>
 #include <string_view>
 
-namespace appcenter::service {
+namespace appcenter::sdk::service {
 /**
  * @brief Service class Interface specification.
  *
@@ -77,4 +77,4 @@ class Service {
 	 */
 	virtual ~Service() {}
 };
-} // namespace appcenter::service
+} // namespace appcenter::sdk::service
