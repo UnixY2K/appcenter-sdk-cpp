@@ -34,6 +34,8 @@ config-job:
     - pacman -Sy --noconfirm meson ninja clang catch2 git util-linux-libs pkgconf
     - meson builddir -Dbuild_tests=true
   artifacts:
+    # we might need the build artifacts even after the build fails
+    when: always
     expire_in: 1 hour
     paths:
       - builddir
