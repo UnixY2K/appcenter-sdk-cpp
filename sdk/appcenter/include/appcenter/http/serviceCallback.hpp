@@ -1,6 +1,7 @@
 #pragma once
 
 #include <appcenter/http/httpResponse.hpp>
+#include <exception>
 
 namespace appcenter {
 namespace http {
