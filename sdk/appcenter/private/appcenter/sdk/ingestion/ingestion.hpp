@@ -1,12 +1,11 @@
 #pragma once
 #include <appcenter/http/serviceCall.hpp>
 #include <appcenter/http/serviceCallback.hpp>
-#include <appcenter/ingestion/models/logContainer.hpp>
+#include <appcenter/sdk/ingestion/models/logContainer.hpp>
 #include <libuuid/UUID.hpp>
 #include <string>
 
-namespace appcenter {
-namespace ingestion {
+namespace appcenter::sdk::ingestion {
 /**
  * @brief Interface to send logs to the Ingestion service.
  *
@@ -25,7 +24,7 @@ class Ingestion {
 	 */
 	virtual http::ServiceCall *
 	sendAsync(std::string appSecret, libUUID::UUID installId,
-	          appcenter::ingestion::model::LogContainer logContainer,
+	          ingestion::model::LogContainer logContainer,
 	          appcenter::http::ServiceCallback callback) = 0;
 
 	/**
@@ -52,4 +51,3 @@ class Ingestion {
 	virtual ~Ingestion() = 0;
 };
 } // namespace ingestion
-} // namespace appcenter

@@ -1,9 +1,8 @@
 #pragma once
-#include <appcenter/ingestion/models/log.hpp>
+#include <appcenter/sdk/ingestion/models/log.hpp>
 #include <exception>
 
-
-namespace appcenter::channel {
+namespace appcenter::sdk::channel {
 /**
  * Channel group listener specification.
  */
@@ -31,4 +30,4 @@ class GroupListener {
 	 */
 	void onFailure(ingestion::model::Log log, std::exception e);
 };
-} // namespace appcenter::channel
+} // namespace appcenter::sdk::channel

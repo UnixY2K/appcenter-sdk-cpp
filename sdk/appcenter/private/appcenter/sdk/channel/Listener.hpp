@@ -1,9 +1,8 @@
 #pragma once
-#include <appcenter/channel/GroupListener.hpp>
+#include <appcenter/sdk/channel/GroupListener.hpp>
 #include <string>
 
-
-namespace appcenter::channel {
+namespace appcenter::sdk::channel {
 /**
  * Channel global listener specification.
  */
@@ -90,4 +89,4 @@ class Listener {
 	 */
 	void onResumed(std::string groupName, std::string targetToken);
 };
-} // namespace appcenter::channel
+} // namespace appcenter::sdk::channel

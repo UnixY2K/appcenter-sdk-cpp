@@ -1,14 +1,12 @@
 #pragma once
-#include <appcenter/ingestion/models/log.hpp>
+#include <appcenter/sdk/ingestion/models/log.hpp>
 
 #include <functional>
 #include <memory>
 #include <utility>
 #include <vector>
 
-namespace appcenter {
-namespace ingestion {
-namespace model {
+namespace appcenter::sdk::ingestion::model {
 class LogContainer {
 	/**
 	 * @brief the list of logs
@@ -45,6 +43,4 @@ class LogContainer {
 		return seed;
 	}
 };
-} // namespace model
-} // namespace ingestion
-} // namespace appcenter
+} // namespace appcenter::sdk::ingestion::model
