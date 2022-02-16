@@ -9,8 +9,6 @@ appcenter_sdk_inc = [
 appcenter_sdk_sources = [
     # API sources
     'src/appcenter/api/memory.cpp',
-    'src/appcenter.cpp',
-    'src/appcenter-sdk.cpp',
     # SDK bindings
     'src/appcenter/api/bindings.cpp',
     # SDK Implementation sources

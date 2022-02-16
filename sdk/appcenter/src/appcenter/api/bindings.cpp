@@ -1,10 +1,10 @@
 #define appcenterLIBRARY_EXPORT
+#include <appcenter/api/appcenter-api.hpp>
 #include <appcenter/api/memory.hpp>
+#include <appcenter/sdk/appcenter.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <cstddef>
 #include <string_view>
-#include <appcenter/api/appcenter-api.hpp>
-#include <appcenter/sdk/appcenter.hpp>
 
 namespace appcenter::api::bindings {
 const char *copyString(const std::string_view sv) {
@@ -177,13 +177,17 @@ appcenterAPI int APPCENTER_API_BLOCKING_GET_MAX_STORAGE_SIZE() {
  *
  * @return appcenterAPI* handle to the new AppCenter API handle.
  */
-appcenterAPI void APPCENTER_API_INIT_SDK() { sdk::AppCenter::startSDK(); }
+appcenterAPI void APPCENTER_API_INIT_SDK() {
+	sdk::AppCenter::getInstance().getInstallId();
+}
 
 /**
  * @brief Stop the SDK services.
  *
  */
-appcenterAPI void APPCENTER_API_STOP_SDK() { sdk::AppCenter::stopSDK(); }
+appcenterAPI void APPCENTER_API_STOP_SDK() {
+	sdk::AppCenter::getInstance().getInstallId();
+}
 }
 
 } // namespace appcenter::api::bindings

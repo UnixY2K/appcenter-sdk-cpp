@@ -1,7 +1,7 @@
 #pragma once
 #include <appcenter/sdk/core/logger.hpp>
-#include <appcenter/service/services.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
+#include <appcenter/sdk/service/service.hpp>
 #include <future>
 #include <string>
 #include <string_view>
@@ -112,7 +112,7 @@ class Platform : public util::mixin::Singleton<Platform> {
 	/**
 	 * @brief start the given services
 	 */
-	void start(const Services_t services);
+	void start(const std::vector<service::Service*> services);
 
 	/**
 	 * @brief start the given services
@@ -120,7 +120,7 @@ class Platform : public util::mixin::Singleton<Platform> {
 	 * @param appSecret the app secret
 	 * @param services the services to start
 	 */
-	void start(const std::string &appSecret, const Services_t services);
+	void start(const std::string &appSecret, const std::vector<service::Service> services);
 
 	/**
 	 * @brief Set the Max Storage Size for App Center

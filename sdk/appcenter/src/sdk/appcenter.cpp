@@ -3,9 +3,12 @@
 #include <appcenter/sdk/core/logger.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <appcenter/service/IService.hpp>
+#include <libuuid/UUID.hpp>
 #include <vector>
 
 namespace appcenter::sdk {
+
+AppCenter::AppCenter() { startSDK(); }
 
 core::logging::LogLevel AppCenter::getLogLevel() const {
 	return core::logging::Logger::getInstance().getLogLevel();
@@ -31,8 +34,23 @@ const bool AppCenter::isConfigured() const { return this->configured; }
 
 void AppCenter::configure(const std::string_view appSecret) {
 	if (!isConfigured()) {
+		getLogger().debug(logTag, "Configuring App Center SDK.");
+		libUUID::UUID uuid;
+
+		// TODO: add support for multiple app secrets on the same string
+		// validate app secret
+		getLogger().verbose(
+		    logTag, "No named identifier found in appSecret; using as-is");
+		if (libUUID::UUID::is_valid(appSecret.data())) {
+			uuid = libUUID::UUID(appSecret.data());
+		} else {
+			getLogger().error(logTag, "App secret is not a valid UUID.");
+			return;
+		}
+
 		this->configured = true;
-		this->appSecret = appSecret;
+	} else {
+		getLogger().warn(logTag, "SDK is already configured.");
 	}
 }
 
@@ -57,7 +75,9 @@ const bool AppCenter::isEnabled() const { return enabled; }
 
 void AppCenter::setEnabled(bool enabled) { this->enabled = enabled; }
 
-const std::string_view AppCenter::getInstallId() const { return installId; }
+const std::string_view AppCenter::getInstallId() const {
+	return installId.to_string();
+}
 
 const bool AppCenter::setMaxStorageSize(int maxStorageSize) {
 	// TODO: add the StorageService
@@ -69,7 +89,25 @@ const int AppCenter::getMaxStorageSize() {
 	return 0;
 }
 
-void AppCenter::startSDK() {}
+sdk::core::logging::Logger &AppCenter::getLogger() const {
+	return core::logging::Logger::getInstance();
+}
 
-void AppCenter::stopSDK() {}
+void AppCenter::startSDK() {
+	if (!sdkStarted) {
+		sdkStarted = true;
+		getLogger().verbose(logTag, "Starting SDK");
+	} else {
+		getLogger().warn(logTag, "SDK already started");
+	}
+}
+
+void AppCenter::stopSDK() {
+	if (sdkStarted) {
+		sdkStarted = false;
+		getLogger().verbose(logTag, "Stopping SDK");
+	} else {
+		getLogger().warn(logTag, "SDK already stopped");
+	}
+}
 } // namespace appcenter::sdk

@@ -1,14 +1,20 @@
 #pragma once
+#include "appcenter/sdk/core/logger.hpp"
 #include <appcenter/core/LogLevel.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
 #include <initializer_list>
+#include <libuuid/UUID.hpp>
 #include <string>
 #include <string_view>
 #include <vector>
 
 namespace appcenter::sdk {
 class AppCenter : public util::mixin::Singleton<AppCenter> {
+  protected:
+	friend class util::mixin::Singleton<AppCenter>;
+	AppCenter();
+
   public:
 	/**
 	 * @brief Get the Log Level object
@@ -120,19 +126,28 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 	const int getMaxStorageSize();
 
 	/**
+	 * @brief Get the Logger
+	 *
+	 * @return sdk::core::logging::Logger& the logger
+	 */
+	sdk::core::logging::Logger &getLogger() const;
+
+	/**
 	 * @brief start the SDK core services.
 	 *
 	 * @return appcenterAPI* handle to the new AppCenter API handle.
 	 */
-	static void startSDK();
+	void startSDK();
 
 	/**
 	 * @brief Stop the SDK services.
 	 *
 	 */
-	static void stopSDK();
+	void stopSDK();
 
   private:
+	static constexpr std::string_view logTag = "AppCenter";
+	bool sdkStarted = false;
 	// TODO: move this to the logger
 	std::string logUrl;
 	std::string countryCode;
@@ -140,6 +155,6 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 	std::string appSecret;
 	std::vector<sdk::service::Service *> services;
 	bool enabled{false};
-	std::string installId;
+	libUUID::UUID installId;
 };
 } // namespace appcenter::sdk

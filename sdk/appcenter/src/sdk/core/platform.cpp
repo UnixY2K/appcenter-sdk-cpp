@@ -1,7 +1,6 @@
 #include <algorithm>
 #include <appcenter/sdk/core/logger.hpp>
 #include <appcenter/sdk/core/platform.hpp>
-#include <appcenter/service/services.hpp>
 #include <future>
 #include <libuuid/UUID.hpp>
 
@@ -44,9 +43,10 @@ void Platform::configure(const std::string &appSecret) {
 	// TODO: setup logger level depending on build type
 }
 
-void Platform::start(const Services_t services) {}
+void Platform::start(const std::vector<service::Service *> services) {}
 
-void Platform::start(const std::string &appSecret, const Services_t services) {
+void Platform::start(const std::string &appSecret,
+                     const std::vector<service::Service> services) {
 	configure(appSecret);
 	// TODO: start services
 }

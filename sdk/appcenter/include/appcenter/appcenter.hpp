@@ -1,17 +1,14 @@
 #pragma once
-#include "appcenter/api/memory.hpp"
-#include <appcenter/private/exportAPI.hpp>
-#include <appcenter/service/services.hpp>
-#include <string>
-
 #include <appcenter/api/appcenter-api.hpp>
+#include <appcenter/api/memory.hpp>
 #include <appcenter/core/LogLevel.hpp>
-#include <appcenter/private/services.hpp>
+#include <appcenter/private/exportAPI.hpp>
 #include <appcenter/service/IService.hpp>
-#include <appcenter/service/services.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
 #include <future>
 #include <initializer_list>
+#include <string>
+
 
 namespace appcenter {
 class AppCenter : public util::mixin::Singleton<AppCenter> {
@@ -208,41 +205,4 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 		appcenter::api::bindings::APPCENTER_API_STOP_SDK();
 	}
 };
-} // namespace appcenter
-
-namespace appcenter {
-
-extern "C" {
-
-/**
- * @brief Configure the SDK with an app secret.
- * This may be called only once per application process lifetime.
- *
- * @param appSecret A unique and secret key used to identify the application.
- */
-appcenterAPI void configure(std::string appSecret);
-/**
- * @brief Check whether SDK has already been configured.
- *
- * @return bool true if configured, false otherwise.
- */
-appcenterAPI bool isConfigured();
-/**
- * @brief Configure the SDK with the list of services to start with an app
- * secret parameter. This may be called only once per application process
- * lifetime.
- * @param application Your application object.
- * @param appSecret A unique and secret key used to identify the application.
- * @param services List of services to use.
- */
-appcenterAPI void start(std::string appSecret, Services_t services);
-/**
- * @brief Start services. This may be called only once per service per
- * application process lifetime.
- *
- * @param services List of services to use.
- */
-appcenterAPI void startServices(Services_t services);
-}
-
 } // namespace appcenter
