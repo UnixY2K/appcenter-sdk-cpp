@@ -1,8 +1,8 @@
+#define appcenterLIBRARY_EXPORT
 #include <appcenter/api/memory.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <cstddef>
 #include <string_view>
-#define appcenterLIBRARY_EXPORT
 #include <appcenter/api/appcenter-api.hpp>
 #include <appcenter/sdk/appcenter.hpp>
 
