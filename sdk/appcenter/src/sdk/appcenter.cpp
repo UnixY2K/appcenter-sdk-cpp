@@ -34,12 +34,12 @@ const bool AppCenter::isConfigured() const { return this->configured; }
 
 void AppCenter::configure(const std::string_view appSecret) {
 	if (!isConfigured()) {
-		getLogger().debug(logTag, "Configuring App Center SDK.");
+		getLogger().verbose(logTag, "Configuring App Center SDK.");
 		libUUID::UUID uuid;
 
 		// TODO: add support for multiple app secrets on the same string
 		// validate app secret
-		getLogger().verbose(
+		getLogger().debug(
 		    logTag, "No named identifier found in appSecret; using as-is");
 		if (libUUID::UUID::is_valid(appSecret.data())) {
 			uuid = libUUID::UUID(appSecret.data());

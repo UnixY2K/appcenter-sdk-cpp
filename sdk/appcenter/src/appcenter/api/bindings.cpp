@@ -178,7 +178,7 @@ appcenterAPI int APPCENTER_API_BLOCKING_GET_MAX_STORAGE_SIZE() {
  * @return appcenterAPI* handle to the new AppCenter API handle.
  */
 appcenterAPI void APPCENTER_API_INIT_SDK() {
-	sdk::AppCenter::getInstance().getInstallId();
+	sdk::AppCenter::getInstance().startSDK();
 }
 
 /**
@@ -186,7 +186,7 @@ appcenterAPI void APPCENTER_API_INIT_SDK() {
  *
  */
 appcenterAPI void APPCENTER_API_STOP_SDK() {
-	sdk::AppCenter::getInstance().getInstallId();
+	sdk::AppCenter::getInstance().stopSDK();
 }
 }
 
