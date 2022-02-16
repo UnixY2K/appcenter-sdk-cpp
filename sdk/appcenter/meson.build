@@ -1,14 +1,37 @@
-appcenter_sdk_inc = include_directories('include')
+appcenter_sdk_api_inc = include_directories('include')
+
+appcenter_sdk_inc = [
+    appcenter_sdk_api_inc,
+    # private include
+    include_directories('private'),
+]
 
 appcenter_sdk_sources = [
+    # API sources
+    'src/appcenter/api/memory.cpp',
     'src/appcenter.cpp',
     'src/appcenter-sdk.cpp',
-    'src/appcenter/core/logger.cpp',
+    # SDK bindings
+    'src/appcenter/api/bindings.cpp',
+    # SDK Implementation sources
+    'src/sdk/core/logger.cpp',
+    'src/sdk/core/platform.cpp',
+    'src/sdk/ingestion/models/log.cpp',
+    'src/sdk/ingestion/device.cpp',
+    'src/sdk/util/Date.cpp',
+    'src/sdk/appcenter.cpp',
 ]
 appcenter_sdk_args = []
 appcenter_sdk_link = []
 appcenter_sdk_deps = [
-    cpp_libuuid_dep
+    cpp_libuuid_dep,
+    thread_dep,
+    hinnant_date_dep,
+    fmt_dep
+]
+
+appcenter_sdk_args += [
+    '-DAPPCENTER_SDK_VERSION="' + appcenter_sdk_version + '"',
 ]
 
 subdir('impl')
@@ -42,5 +65,5 @@ endif
 
 appcenter_sdk_dep = declare_dependency(
     link_with: appcenter_sdk_lib,
-    include_directories: appcenter_sdk_inc
+    include_directories: appcenter_sdk_api_inc
 )

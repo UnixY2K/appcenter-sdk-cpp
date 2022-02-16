@@ -1,14 +1,12 @@
 #pragma once
-#include <appcenter/ingestion/models/log.hpp>
+#include <appcenter/sdk/ingestion/models/log.hpp>
 
 #include <functional>
 #include <memory>
 #include <utility>
 #include <vector>
 
-namespace appcenter {
-namespace ingestion {
-namespace model {
+namespace appcenter::sdk::ingestion::model {
 class LogContainer {
 	/**
 	 * @brief the list of logs
@@ -29,12 +27,21 @@ class LogContainer {
 	 *
 	 * @param logs the logs value to set
 	 */
-	void setLogs(const std::vector<std::unique_ptr<Log>> &&logs) {
+	void setLogs(std::vector<std::unique_ptr<Log>> &&logs) {
 		this->logs = std::move(logs);
 	}
 
 	bool operator==(const LogContainer &other) const {
-		return logs == other.logs;
+		if(logs.size() != other.logs.size()) {
+			return false;
+		}
+		
+		for(size_t i = 0; i < logs.size(); i++) {
+			if(logs[i] != other.logs[i]) {
+				return false;
+			}
+		}
+		return true;
 	}
 
 	std::size_t hashCode() const {
@@ -45,6 +52,4 @@ class LogContainer {
 		return seed;
 	}
 };
-} // namespace model
-} // namespace ingestion
-} // namespace appcenter
+} // namespace appcenter::sdk::ingestion::model

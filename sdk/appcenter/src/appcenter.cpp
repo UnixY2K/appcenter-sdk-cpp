@@ -1,6 +1,7 @@
+#include <appcenter/appcenter.hpp>
 #include <appcenter/service/services.hpp>
-#include <appcenter/private/services.hpp>
 #include <iostream>
+#include <string>
 
 namespace appcenter {
 namespace services {

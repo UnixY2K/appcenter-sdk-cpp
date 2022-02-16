@@ -1,26 +1,27 @@
 #pragma once
+#include <appcenter/core/LogLevel.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
+#include <cstddef>
 #include <iosfwd>
 #include <string>
+#include <string_view>
 
-namespace appcenter::core::logging {
+namespace appcenter::sdk::core::logging {
 // Log Level threshold for logs emmited by the SDK.
-enum class LogLevel {
-	// SDK emits all possible level of logs.
-	Verbose,
-	// SDK emits debug, info, warn, error and assert logs.
-	Debug,
-	// SDK emits info, warn, error and assert logs.
-	Info,
-	// SDK emits warn, error, and assert logs.
-	Warn,
-	// SDK emits error and assert logs.
-	Error,
-	// Only assert logs are emmited by the SDK.
-	Assert,
-	// No log is emitted by SDK.
-	None
-};
+using LogLevel = appcenter::core::logging::LogLevel;
+
+constexpr std::string_view log_level_names[] = {
+    "VERBOSE", "DEBUG", "INFO", "WARN", "ERROR", "ASSERT", "NONE"};
+
+constexpr std::string_view getLogLevelName(LogLevel level) {
+	// check bounds
+	size_t index = static_cast<size_t>(level);
+	size_t max = sizeof(log_level_names) / sizeof(log_level_names[0]);
+	if (index >= max) {
+		index = max - 1;
+	}
+	return log_level_names[index];
+}
 
 class Logger : public util::mixin::Singleton<Logger> {
   public:
@@ -57,25 +58,12 @@ class Logger : public util::mixin::Singleton<Logger> {
 	void setLogLevel(LogLevel level);
 
 	/**
-	 * @brief Get the Log Tag for this SDK.
-	 * @details All logs emmited at the SDK level will contain this tag.
-	 * @return const std::string&
-	 */
-	const std::string &getLogTag();
-	/**
-	 * @brief Set the Log Tag object.
-	 * @details All logs emmited at the SDK level will contain this tag.
-	 * @param logTag
-	 */
-	void setLogTag(std::string logTag);
-
-	/**
 	 * @brief Writes a log at the LogLevel.Verbose level.
 	 * @note To track events, use Analytics.TrackEvent
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void verbose(std::string tag, std::string message);
+	void verbose(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Debug level.
@@ -83,7 +71,7 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void debug(std::string tag, std::string message);
+	void debug(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Info level.
@@ -91,7 +79,7 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void info(std::string tag, std::string message);
+	void info(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Warn level.
@@ -99,7 +87,7 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void warn(std::string tag, std::string message);
+	void warn(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Error level.
@@ -107,7 +95,7 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void error(std::string tag, std::string message);
+	void error(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Assert level.
@@ -115,14 +103,28 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param tag Log tag.
 	 * @param message Message.
 	 */
-	void assert(std::string tag, std::string message);
+	void assert(const std::string_view tag, const std::string_view message);
+
+	/**
+	 * @brief Set the Log Format output.
+	 *
+	 * @param format The new Log Format output.
+	 */
+	void setLogFormat(const std::string_view format);
+
+	/**
+	 * @brief Get the Log Format.
+	 *
+	 * @return const std::string_view the Log Format.
+	 */
+	const std::string_view getLogFormat() const;
 
   private:
-	void log(LogLevel level, std::string tag, std::string message);
-	const std::string getMessageWithTag(std::string tag, std::string message);
+	std::string log_format = "{timestamp} [{tag}] {level}: {message}\n";
+	void log(const LogLevel level, const std::string_view tag,
+	         const std::string_view message);
 
 	std::ostream *m_logger = nullptr;
-	std::string m_logTag = "AppCenter";
-    LogLevel m_logLevel = LogLevel::Assert;
+	LogLevel m_logLevel = LogLevel::Assert;
 };
-} // namespace appcenter::core::logging
+} // namespace appcenter::sdk::core::logging
