@@ -9,9 +9,10 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 	// do not output the timestamp
 	Logger &logger = Logger::getInstance();
 	logger.setLogFormat("[{tag}] {level}: {message}\n");
+	std::stringstream ss;
+	logger.setLogger(ss);
 	SECTION("generate verbose") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::Verbose);
 		// this should not be logged
@@ -36,8 +37,7 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 		REQUIRE(ss.str() == expected);
 	}
 	SECTION("generate debug") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::Debug);
 		// this should not be logged
@@ -61,8 +61,7 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 		REQUIRE(ss.str() == expected);
 	}
 	SECTION("generate info") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::Info);
 		// this should not be logged
@@ -85,8 +84,7 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 		REQUIRE(ss.str() == expected);
 	}
 	SECTION("generate warn") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::Warn);
 		// this should not be logged
@@ -108,8 +106,7 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 		REQUIRE(ss.str() == expected);
 	}
 	SECTION("generate error") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::Error);
 		// this should not be logged
@@ -132,8 +129,7 @@ TEST_CASE("AppCenter::core::logging", "[Logger]") {
 	// we cannot test the assert method, because catch2 includes the assert
 	// macro and we cannot use the assert method
 	SECTION("Generate None") {
-		std::stringstream ss;
-		logger.setLogger(ss);
+		ss.clear();
 
 		logger.setLogLevel(LogLevel::None);
 		// this should not be logged
