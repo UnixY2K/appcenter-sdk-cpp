@@ -8,7 +8,7 @@ test_dependencies = [
 ]
 
 testexe = executable('testexe', test_sources,
-                     include_directories : appcenter_sdk_core_inc,
+                     include_directories : appcenter_sdk_core_incl,
                      link_with : appcenter_sdk_core_lib,
                      dependencies: test_dependencies)
 
