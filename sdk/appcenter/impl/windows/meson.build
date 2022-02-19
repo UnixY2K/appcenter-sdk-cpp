@@ -3,5 +3,5 @@ impl_sources = [
 ]
 
 foreach src : impl_sources
-    appcenter_sdk_impl_sources += appcenter_sdk_impl_src_dir + '/' + src
+    appcenter_sdk_impl_srcs += appcenter_sdk_impl_src_dir + '/' + src
 endforeach

@@ -1,6 +1,6 @@
 fs = import('fs')
 
-appcenter_sdk_impl_sources = []
+appcenter_sdk_impl_srcs = []
 appcenter_sdk_impl_args    = []
 appcenter_sdk_impl_link    = []
 appcenter_sdk_impl_deps    = []
