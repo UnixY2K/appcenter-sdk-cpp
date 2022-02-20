@@ -1,1 +1,2 @@
 subdir('appcenter')
+subdir('analytics')

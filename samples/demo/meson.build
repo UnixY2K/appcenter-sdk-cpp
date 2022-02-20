@@ -8,7 +8,8 @@ appcenter_demo_link = [
     appcenter_sdk_lib,
 ]
 appcenter_demo_deps = [
-    appcenter_sdk_dep
+    appcenter_sdk_dep,
+    appcenter_analytics_dep,
 ]
 
 appcenter_demo_args += appcenter_sample_args

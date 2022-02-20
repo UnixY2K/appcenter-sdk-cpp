@@ -1,5 +1,5 @@
+#include <appcenter/analytics/analytics.hpp>
 #include <appcenter/appcenter.hpp>
-#include <iostream>
 #include <string_view>
 
 int main(int, char **) {
@@ -13,8 +13,12 @@ int main(int, char **) {
 	constexpr std::string_view appSecret = "YOUR_APP_SECRET";
 #endif
 	// we can control the SDK log level
-	appcenter::AppCenter::getInstance().setLogLevel(
-	    appcenter::core::logging::LogLevel::Verbose);
+	appcenter::AppCenter &appCenterSDK = appcenter::AppCenter::getInstance();
+	appcenter::analytics::Analytics &analytics = appcenter::analytics::Analytics::getInstance();
+	appCenterSDK.setLogLevel(appcenter::core::logging::LogLevel::Verbose);
 	// or configure the SDK with an app secret
-	appcenter::AppCenter::getInstance().configure(appSecret);
+	appCenterSDK.configure(appSecret);
+	if (appCenterSDK.isConfigured()){
+		appCenterSDK.start(&analytics);
+	}
 }
