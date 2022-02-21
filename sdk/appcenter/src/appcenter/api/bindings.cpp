@@ -109,12 +109,9 @@ appcenterAPI void APPCENTER_API_START(const char *appSecret,
  *
  * @param service the service to start.
  */
-appcenterAPI void APPCENTER_API_START_SERVICE(service::IService *service) {
-	if (service) {
-		sdk::service::Service *service_ =
-		    reinterpret_cast<sdk::service::Service *>(service);
-		sdk::AppCenter::getInstance().start(service_);
-	}
+appcenterAPI void
+APPCENTER_API_START_SERVICE(appcenter::sdk::service::Service *service) {
+		sdk::AppCenter::getInstance().start(service);
 }
 
 /**

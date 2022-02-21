@@ -11,6 +11,7 @@ appcenter_analytics_private_incl = include_directories('private')
 appcenter_analytics_shared_incl = [
     appcenter_analytics_api_incl,
     appcenter_analytics_private_incl,
+    appcenter_sdk_shared_incl,
 ]
 # there is no sense to compile shared sources
 # appcenter_analytics_shared_src = []
@@ -19,24 +20,33 @@ appcenter_analytics_shared_incl = [
 # all non public libraries should be wrapped in the implementation
 # appcenter_analytics_shared_libs = []
 appcenter_analytics_shared_deps = [
-    cpp_libuuid_dep,
+    appcenter_sdk_shared_deps,
 ]
 
-# Implementation configuration
+#################################################################
+# Analytics Implementation configuration
+#################################################################
 
-appcenter_analytics_core_incl = [
-    appcenter_analytics_shared_incl,
-    appcenter_sdk_core_incl
+appcenter_analytics_core_incl = []
+appcenter_analytics_core_srcs = [
+    'src/analytics/analytics.cpp',
 ]
-appcenter_analytics_core_srcs = []
 appcenter_analytics_core_args = []
 appcenter_analytics_core_link = [appcenter_sdk_core_lib]
 appcenter_analytics_core_deps = []
+
+## add shared configuration to the Analytics implementation
+appcenter_analytics_core_incl += appcenter_analytics_shared_incl
+# appcenter_analytics_core_src  += appcenter_analytics_shared_src
+# appcenter_analytics_core_args += appcenter_analytics_shared_args
+# appcenter_analytics_core_libs += appcenter_analytics_shared_libs
+appcenter_analytics_core_deps += appcenter_analytics_shared_deps
 
 ### Analytics Implementation library
 appcenter_analytics_core_lib = static_library('appcenter-analytics-core',
                                     appcenter_analytics_core_srcs,
                                     include_directories : appcenter_analytics_core_incl,
+                                    link_with : appcenter_analytics_core_link,
                                     cpp_args: appcenter_analytics_core_args,
                                     dependencies : appcenter_analytics_core_deps)
 
@@ -44,8 +54,12 @@ appcenter_analytics_core_lib = static_library('appcenter-analytics-core',
 # Analytics API configuration
 #################################################################
 appcenter_analytics_incl = []
-appcenter_analytics_srcs = []
-appcenter_analytics_link = []
+appcenter_analytics_srcs = [
+    'src/analytics/api/analytics-api.cpp',
+]
+appcenter_analytics_link = [
+    appcenter_analytics_core_lib,
+]
 appcenter_analytics_deps = []
 appcenter_analytics_args = []
 

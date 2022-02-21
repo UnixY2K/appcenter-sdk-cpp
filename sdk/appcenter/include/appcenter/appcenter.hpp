@@ -9,7 +9,6 @@
 #include <initializer_list>
 #include <string>
 
-
 namespace appcenter {
 class AppCenter : public util::mixin::Singleton<AppCenter> {
 	friend class util::mixin::Singleton<AppCenter>;
@@ -125,7 +124,8 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 	 */
 	void start(service::IService *service) {
 		if (service) {
-			appcenter::api::bindings::APPCENTER_API_START_SERVICE(service);
+			appcenter::api::bindings::APPCENTER_API_START_SERVICE(
+			    service->getService());
 		}
 	}
 

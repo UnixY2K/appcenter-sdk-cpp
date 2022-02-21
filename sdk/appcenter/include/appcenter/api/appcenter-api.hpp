@@ -1,7 +1,10 @@
 #pragma once
 #include <appcenter/api/memory.hpp>
 #include <appcenter/private/exportAPI.hpp>
-#include <appcenter/service/IService.hpp>
+
+namespace appcenter::sdk::service {
+class Service;
+}
 
 namespace appcenter::api::bindings {
 /**
@@ -77,7 +80,7 @@ appcenterAPI void APPCENTER_API_START(const char *appSecret,
  *
  * @param service the service to start.
  */
-appcenterAPI void APPCENTER_API_START_SERVICE(service::IService *service);
+appcenterAPI void APPCENTER_API_START_SERVICE(appcenter::sdk::service::Service *service);
 
 // TODO: also, provide an C interface for the services
 

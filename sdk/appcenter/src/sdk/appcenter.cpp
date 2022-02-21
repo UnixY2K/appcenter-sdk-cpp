@@ -65,10 +65,14 @@ void AppCenter::start(const std::string_view appSecret,
 }
 
 void AppCenter::start(sdk::service::Service *service) {
-	// TODO: init the service
-	// TODO: check if the service is already started
-	// add the service to the list of services
-	services.push_back(service);
+	if (service) {
+		// TODO: init the service
+		// TODO: check if the service is already started
+		// add the service to the list of services
+		services.push_back(service);
+	} else {
+		getLogger().error(logTag, "Cannot Start a null service.");
+	}
 }
 
 const bool AppCenter::isEnabled() const { return enabled; }
