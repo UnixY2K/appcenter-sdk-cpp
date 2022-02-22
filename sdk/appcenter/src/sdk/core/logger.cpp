@@ -46,9 +46,12 @@ void Logger::log(const LogLevel level, const std::string_view tag,
 	if (level >= m_logLevel) {
 		std::string logMessage = fmt::format(
 		    log_format,
-		    fmt::arg("timestamp", util::date::Date::now().to_string()),
-		    fmt::arg("level", getLogLevelName(level)), fmt::arg("tag", tag),
-		    fmt::arg("message", message));
+		    fmt::arg("timestamp",
+		             util::date::Date::now().to_string()),          // timestamp
+		    fmt::arg("level", std::string(getLogLevelName(level))), // level
+		    fmt::arg("tag", tag),                                   // tag
+		    fmt::arg("message", message)                            // message
+		);
 		if (m_logger) {
 			// TODO: implement a propper logger interface
 			*m_logger << logMessage;
