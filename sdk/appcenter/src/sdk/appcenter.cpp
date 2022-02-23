@@ -4,6 +4,7 @@
 #include <appcenter/sdk/service/service.hpp>
 #include <appcenter/service/IService.hpp>
 #include <libuuid/UUID.hpp>
+#include <unordered_map>
 #include <vector>
 
 namespace appcenter::sdk {
@@ -35,18 +36,60 @@ const bool AppCenter::isConfigured() const { return this->configured; }
 void AppCenter::configure(const std::string_view appSecret) {
 	if (!isConfigured()) {
 		getLogger().verbose(logTag, "Configuring App Center SDK.");
-		libUUID::UUID uuid;
 
-		// TODO: add support for multiple app secrets on the same string
+		// the secret map
+		std::unordered_map<std::string, libUUID::UUID> secretMap;
 		// validate app secret
-		getLogger().debug(
-		    logTag, "No named identifier found in appSecret; using as-is");
+		// TODO: add support for multiple app secrets on the same string
+		// TODO: strip the app secrets from the string
+		// check if the app secret is an valid UUID
+
 		if (libUUID::UUID::is_valid(appSecret.data())) {
-			uuid = libUUID::UUID(appSecret.data());
+			getLogger().debug(
+			    logTag, "No named identifier found in appSecret; using as-is");
+			secretMap.insert(
+			    std::make_pair("default", libUUID::UUID(appSecret.data())));
 		} else {
+			// TODO: check and strip the identifiers
+			// the format is:
+			// "android=397ac247-d473-44f6-a441-f0d84e22fb6e;" +
+            // "uwp={Your UWP App secret here};" +
+            // "ios={Your iOS App secret here};" +
+            // "macos={Your macOS App secret here};
+			// "{tag}={UUID};"
+			// meanwhile we will fail if the app secret is not a valid UUID
 			getLogger().error(logTag, "App secret is not a valid UUID.");
-			return;
 		}
+		if (secretMap.empty()) {
+			getLogger().warn(logTag, "Not found any valid app secret, "
+			                         "configuring witouth app secret.");
+			secretMap.insert(
+			    std::make_pair(std::string("default"), libUUID::UUID()));
+		}
+		// search for an app secret which matches for the current platform
+		// TODO: add support for setting the target platform
+		// TODO: or automatically detect the target platform
+		bool appSecretFound = false;
+		for (auto &secret : secretMap) {
+			if(secret.first == "default") {
+				// we will use the default app secret if the current platform
+				// is not found
+				continue;
+			}
+			// meanwhile we will use the first app secret
+			getLogger().debug(logTag, "Found app secret for platform: " + secret.first);
+			// TODO: make this thread safe
+			this->appSecret = secret.second;
+			appSecretFound = true;
+			break;
+		}
+		if (!appSecretFound) {
+			// we will use the default app secret
+			getLogger().debug(logTag, "Using default app secret.");
+			// TODO: make this thread safe
+			this->appSecret = secretMap.at("default");
+		}
+		
 
 		this->configured = true;
 	} else {
