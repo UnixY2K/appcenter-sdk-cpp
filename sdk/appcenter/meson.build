@@ -60,6 +60,7 @@ appcenter_sdk_utilities = []
 appcenter_sdk_core_srcs += appcenter_sdk_utilities
 
 ## add implementation
+appcenter_sdk_core_incl += appcenter_sdk_impl_incl
 appcenter_sdk_core_srcs += appcenter_sdk_impl_srcs
 appcenter_sdk_core_args += appcenter_sdk_impl_args
 appcenter_sdk_core_link += appcenter_sdk_impl_link

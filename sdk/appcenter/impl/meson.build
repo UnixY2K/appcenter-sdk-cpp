@@ -1,9 +1,10 @@
 fs = import('fs')
 
+appcenter_sdk_impl_incl = [include_directories('include')]
 appcenter_sdk_impl_srcs = []
-appcenter_sdk_impl_args    = []
-appcenter_sdk_impl_link    = []
-appcenter_sdk_impl_deps    = []
+appcenter_sdk_impl_args  = []
+appcenter_sdk_impl_link  = []
+appcenter_sdk_impl_deps  = []
 
 impl_dir = host_machine.system()
 
