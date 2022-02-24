@@ -9,7 +9,7 @@
 
 namespace appcenter::sdk::impl {
 namespace linux {
-std::unique_ptr<utsname> getSystenNameStructure() {
+std::unique_ptr<utsname> getSystemNameStructure() {
 	std::unique_ptr<utsname> name(new utsname());
 	uname(name.get());
 	return name;
