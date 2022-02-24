@@ -6,8 +6,8 @@
 namespace appcenter::sdk::impl {
 namespace platform {
 namespace constants {
-constexpr std::string_view unknown_value = "Unknown";
-constexpr std::string_view undefined_value = "Undefined";
+constexpr std::string_view unknown_value = sdk::constants::unknown_value;
+constexpr std::string_view undefined_value = sdk::constants::undefined_value;
 } // namespace constants
 
 class PlatformInfo {
