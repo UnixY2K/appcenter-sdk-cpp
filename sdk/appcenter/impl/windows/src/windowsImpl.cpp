@@ -50,6 +50,11 @@ const std::string_view PlatformInfo::getScreenResolution() const {
 	return constants::unknown_value;
 }
 
+const std::string_view PlatformInfo::getCPUArchitecture() const {
+	// TODO: implement
+	return constants::unknown_value;
+}
+
 PlatformInfo &PlatformInfo::operator=(const PlatformInfo &other) {
 	if (other.impl_info) {
 		impl_info = std::make_unique<platformImplData>();

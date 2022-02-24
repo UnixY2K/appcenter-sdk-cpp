@@ -1,8 +1,11 @@
 // appcenter SDK linux specific implementation
 #include <appcenter/sdk/impl/platformInfo.hpp>
+#include <locale>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <sys/utsname.h>
+#include <unistd.h>
 
 namespace appcenter::sdk::impl {
 namespace linux {
@@ -16,6 +19,8 @@ namespace platform {
 
 struct PlatformInfo::platformImplData {
 	utsname data;
+    // ISO 639 language code
+    std::string locale;
 };
 
 PlatformInfo::PlatformInfo() = default;
@@ -39,24 +44,33 @@ const std::string_view PlatformInfo::getOemName() const {
 	return constants::unknown_value;
 }
 const std::string_view PlatformInfo::getOsName() const {
-	// TODO: implement
-	return constants::unknown_value;
+	// TODO: add distro name at the end
+	return impl_info ? std::string_view(impl_info->data.sysname)
+	                 : constants::unknown_value;
 }
 const std::string_view PlatformInfo::getOsVersion() const {
-	// TODO: implement
-	return constants::unknown_value;
+	// return the kernel name version
+	return impl_info ? std::string_view(impl_info->data.release)
+	                 : constants::unknown_value;
 }
 const std::string_view PlatformInfo::getOsBuild() const {
-	// TODO: implement
-	return constants::unknown_value;
+	// return the version
+	return impl_info ? std::string_view(impl_info->data.version)
+	                 : constants::unknown_value;
 }
 const std::string_view PlatformInfo::getLocale() const {
-	// TODO: implement
+    return impl_info ? std::string_view(impl_info->locale)
+                     : constants::unknown_value;
 	return constants::unknown_value;
 }
 const std::string_view PlatformInfo::getScreenResolution() const {
 	// TODO: implement
 	return constants::unknown_value;
+}
+const std::string_view PlatformInfo::getCPUArchitecture() const {
+	// return the CPU architecture, e.g. x86_64.
+	return impl_info ? std::string_view(impl_info->data.machine)
+	                 : constants::unknown_value;
 }
 
 PlatformInfo &PlatformInfo::operator=(const PlatformInfo &other) {

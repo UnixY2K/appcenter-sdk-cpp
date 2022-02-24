@@ -27,6 +27,7 @@ class PlatformInfo {
 	const std::string_view getOsBuild() const;
 	const std::string_view getLocale() const;
 	const std::string_view getScreenResolution() const;
+	const std::string_view getCPUArchitecture() const;
 
 	PlatformInfo &operator=(const PlatformInfo &other);
 	PlatformInfo &operator=(PlatformInfo &&other) noexcept;
