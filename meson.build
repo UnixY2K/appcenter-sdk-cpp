@@ -44,6 +44,12 @@ fmt_dep = dependency(
                 fallback: ['fmt', 'fmt_dep']
 )
 
+# cpp_libcfgpath
+cpp_libcfgpath_dep = dependency(
+                'cpp_libcfgpath',
+                fallback: ['cpp-libcfgpath', 'cpp_libcfgpath_dep']
+)
+
 thread_dep = dependency('threads')
 
 subdir('sdk')

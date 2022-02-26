@@ -40,7 +40,8 @@ appcenter_sdk_core_link = []
 appcenter_sdk_core_deps = [
     thread_dep,
     hinnant_date_dep,
-    fmt_dep
+    fmt_dep,
+    cpp_libcfgpath_dep
 ]
 
 ## add shared configuration to the SDK implementation
