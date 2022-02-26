@@ -1,2 +1,7 @@
-[wrap-redirect]
-filename = cpp-libcfgpath\subprojects\xxhash.wrap
+[wrap-git]
+url = https://github.com/ninjaoflight/xxHash.git
+revision = v0.8.0-meson
+
+[provide]
+libxxhash = xxhash_dep
+
