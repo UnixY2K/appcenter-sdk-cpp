@@ -1,2 +1,2 @@
 [wrap-redirect]
-filename = cpp-libcfgpath/subprojects/xxhash.wrap
+filename = cpp-libcfgpath\subprojects\xxhash.wrap
