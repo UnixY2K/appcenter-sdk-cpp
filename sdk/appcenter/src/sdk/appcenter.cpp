@@ -13,19 +13,19 @@ namespace appcenter::sdk {
 AppCenter::AppCenter() { startSDK(); }
 
 core::logging::LogLevel AppCenter::getLogLevel() const {
-	return core::logging::Logger::getInstance().getLogLevel();
+	return sdk::core::Platform::getInstance().getPlatformLogLevel();
 }
 
 void AppCenter::setLogLevel(core::logging::LogLevel level) {
-	core::logging::Logger::getInstance().setLogLevel(level);
+	sdk::core::Platform::getInstance().setPlatformLogLevel(level);
 }
 
 void AppCenter::setLogUrl(const std::string_view logUrl) {
-	this->logUrl = logUrl;
+	sdk::core::Platform::getInstance().setLogUrl(logUrl);
 }
 
 void AppCenter::setCountryCode(const std::string_view countryCode) {
-	this->countryCode = countryCode;
+	sdk::core::Platform::getInstance().setCountryCode(countryCode);
 }
 
 const std::string_view AppCenter::getSdkVersion() const {

@@ -149,8 +149,6 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 	static constexpr std::string_view logTag{"AppCenter"};
 	bool sdkStarted = false;
 	// TODO: move this to the platform module
-	std::string logUrl;
-	std::string countryCode;
 	bool configured{false};
 	std::string appSecret;
 	bool enabled{false};

@@ -57,9 +57,9 @@ const libUUID::UUID Platform::getInstallId() {
 	return installId;
 }
 
-void Platform::setLogUrl(const std::string &url) { logUrl = url; }
+void Platform::setLogUrl(const std::string_view url) { logUrl = url; }
 
-void Platform::setUserId(const std::string &userId) { this->userId = userId; }
+void Platform::setUserId(const std::string_view userId) { this->userId = userId; }
 
 void Platform::setCountryCode(const std::string_view countryCode) {
 	this->countryCode = countryCode;

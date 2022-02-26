@@ -70,12 +70,12 @@ class Platform : public util::mixin::Singleton<Platform> {
 	/**
 	 * @brief sets the Log URL
 	 */
-	void setLogUrl(const std::string &url);
+	void setLogUrl(const std::string_view url);
 
 	/**
 	 * @brief sets the userId
 	 */
-	void setUserId(const std::string &userId);
+	void setUserId(const std::string_view userId);
 
 	/**
 	 * @brief sets the country code
