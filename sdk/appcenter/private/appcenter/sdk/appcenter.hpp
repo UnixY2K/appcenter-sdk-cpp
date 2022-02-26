@@ -1,6 +1,6 @@
 #pragma once
-#include "appcenter/sdk/core/logger.hpp"
 #include <appcenter/core/LogLevel.hpp>
+#include <appcenter/sdk/core/logger.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
 #include <initializer_list>
@@ -146,15 +146,13 @@ class AppCenter : public util::mixin::Singleton<AppCenter> {
 	void stopSDK();
 
   private:
-	static constexpr std::string_view logTag = "AppCenter";
+	static constexpr std::string_view logTag{"AppCenter"};
 	bool sdkStarted = false;
 	// TODO: move this to the platform module
 	std::string logUrl;
 	std::string countryCode;
 	bool configured{false};
 	std::string appSecret;
-	std::vector<sdk::service::Service *> services;
 	bool enabled{false};
-	libUUID::UUID installId;
 };
 } // namespace appcenter::sdk

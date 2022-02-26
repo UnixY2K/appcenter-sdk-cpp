@@ -1,7 +1,7 @@
 #pragma once
 #include <appcenter/sdk/core/logger.hpp>
-#include <appcenter/util/mixin/singleton.hpp>
 #include <appcenter/sdk/service/service.hpp>
+#include <appcenter/util/mixin/singleton.hpp>
 #include <future>
 #include <string>
 #include <string_view>
@@ -59,15 +59,6 @@ class Platform : public util::mixin::Singleton<Platform> {
 	// ignore PlatformSetEnabledAsync
 
 	/**
-	 * @brief return the InstallID asynchronously
-	 *
-	 * @note if the install id is not set, it will be generated
-	 *
-	 * @return the InstallID
-	 */
-	std::future<libUUID::UUID> getInstallIdAsync();
-
-	/**
 	 * @brief return the InstallID
 	 *
 	 * @note if the install id is not set, it will be generated
@@ -91,7 +82,7 @@ class Platform : public util::mixin::Singleton<Platform> {
 	 *
 	 * @param countryCode the two-letter ISO country code
 	 */
-	void setCountryCode(const std::string &countryCode);
+	void setCountryCode(const std::string_view countryCode);
 
 	/**
 	 * @brief check if the platform is configured
@@ -106,13 +97,20 @@ class Platform : public util::mixin::Singleton<Platform> {
 	 *
 	 * @param appSecret the app secret
 	 */
-	void configure(const std::string &appSecret);
+	void configure(const std::string_view appSecret);
 
 	// TODO: implement a propper way to start services
 	/**
+	 * @brief start a service
+	 *
+	 * @param service the service to start
+	 */
+	void start(service::Service *service);
+	
+	/**
 	 * @brief start the given services
 	 */
-	void start(const std::vector<service::Service*> services);
+	void start(const std::vector<service::Service *> services);
 
 	/**
 	 * @brief start the given services
@@ -120,7 +118,8 @@ class Platform : public util::mixin::Singleton<Platform> {
 	 * @param appSecret the app secret
 	 * @param services the services to start
 	 */
-	void start(const std::string &appSecret, const std::vector<service::Service> services);
+	void start(const std::string_view appSecret,
+	           const std::vector<service::Service *> services);
 
 	/**
 	 * @brief Set the Max Storage Size for App Center
@@ -138,5 +137,10 @@ class Platform : public util::mixin::Singleton<Platform> {
 	bool setMaxStorageSize(size_t bytes);
 
 	// void unsetInstance();
+  private:
+	static constexpr std::string_view logTag{"AppCenter"};
+	static core::logging::Logger &getLogger();
+
+	std::vector<sdk::service::Service *> services;
 };
 } // namespace appcenter::sdk::core
