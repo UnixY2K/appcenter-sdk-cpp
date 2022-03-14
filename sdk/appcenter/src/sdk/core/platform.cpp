@@ -1,3 +1,4 @@
+#include "appcenter/sdk/constants.hpp"
 #include <algorithm>
 #include <appcenter/sdk/appcenter.hpp>
 #include <appcenter/sdk/core/logger.hpp>
@@ -8,6 +9,7 @@
 #include <fstream>
 #include <future>
 #include <libuuid/UUID.hpp>
+#include <string>
 #include <string_view>
 #include <utility>
 
@@ -28,7 +30,10 @@ const libUUID::UUID Platform::getInstallId() {
 	}
 	getLogger().verbose(logTag, "Install ID not cached, retrieving.");
 	std::string appHash = cfgpathpp::generateAppHash();
-	std::string path = cfgpathpp::getAppDataPath(appHash) + "/appid";
+	std::string path =
+	    cfgpathpp::getAppDataPath(
+	        std::string(constants::appcenter_config_path) + "/" + appHash) +
+	    "/appid";
 	// check if the file exists
 	if (std::filesystem::exists(path)) {
 		// read the file
@@ -37,15 +42,18 @@ const libUUID::UUID Platform::getInstallId() {
 		file >> id;
 		// check if the id is valid
 		if (libUUID::UUID::is_valid(id)) {
-			getLogger().verbose(logTag, "found valid install id in file:" + path);
+			getLogger().verbose(logTag,
+			                    "found valid install id in file:" + path);
 			installId = libUUID::UUID(id);
 		} else {
-			getLogger().warn(logTag, "Invalid install id found in file: " + path);
+			getLogger().warn(logTag,
+			                 "Invalid install id found in file: " + path);
 		}
 	}
 
 	if (installId.to_string().empty()) {
-		getLogger().verbose(logTag, "Install ID not found, generating a new one");
+		getLogger().verbose(logTag,
+		                    "Install ID not found, generating a new one");
 		libUUID::UUID uuid = libUUID::UUID::generate();
 		installId = std::move(uuid);
 		// save the id to file
@@ -58,7 +66,9 @@ const libUUID::UUID Platform::getInstallId() {
 
 void Platform::setLogUrl(const std::string_view url) { logUrl = url; }
 
-void Platform::setUserId(const std::string_view userId) { this->userId = userId; }
+void Platform::setUserId(const std::string_view userId) {
+	this->userId = userId;
+}
 
 void Platform::setCountryCode(const std::string_view countryCode) {
 	this->countryCode = countryCode;
@@ -125,6 +135,7 @@ void Platform::configure(const std::string_view appSecret) {
 			this->appSecret = secretMap.at("default");
 		}
 		// TODO: get the install ID
+		std::string installId = getInstallId().to_string();
 		// TODO: init the application directory
 		// TODO: start the storage service
 

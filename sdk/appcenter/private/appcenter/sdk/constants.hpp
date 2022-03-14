@@ -24,4 +24,9 @@ constexpr std::string_view unknown_locale_iso_code = "xx_XX";
 // the default value of the storage size is 10MB, this value cannot be set to
 // less than 20KB and is rounded my multiples of 4KB
 constexpr std::size_t maxDBStorageSize{10 * 1024 * 1024};
+// paths
+// appcenter config of the app
+constexpr std::string_view appconfig_path{"appcenter/native"};
+// appcenter path where the internal data such install id is stored
+constexpr std::string_view appcenter_config_path{"appcenter/config"};
 } // namespace appcenter::sdk::constants

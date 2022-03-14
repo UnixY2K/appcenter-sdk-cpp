@@ -15,7 +15,6 @@ class Platform : public util::mixin::Singleton<Platform>,
                  public service::InternalService<Platform> {
 	// todo: move this to the requests/ingestion layer
 	bool networkAllowed{true};
-	// todo: create a propper install id generator
 	libUUID::UUID installId{libUUID::UUID()};
 	// todo: implement a way to change the log url in the ingestion service
 	std::string logUrl;
