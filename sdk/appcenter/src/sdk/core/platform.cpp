@@ -23,11 +23,10 @@ void Platform::setNetworkAllowed(const bool allowed) {
 	networkAllowed = allowed;
 }
 const libUUID::UUID Platform::getInstallId() {
-	core::logging::Logger &logger = core::logging::Logger::getInstance();
 	if (!installId.isEmpty() && installId.isValid()) {
 		return installId;
 	}
-	logger.verbose(logTag, "Install ID not cached, retrieving.");
+	getLogger().verbose(logTag, "Install ID not cached, retrieving.");
 	std::string appHash = cfgpathpp::generateAppHash();
 	std::string path = cfgpathpp::getAppDataPath(appHash) + "/appid";
 	// check if the file exists
@@ -38,19 +37,19 @@ const libUUID::UUID Platform::getInstallId() {
 		file >> id;
 		// check if the id is valid
 		if (libUUID::UUID::is_valid(id)) {
-			logger.verbose(logTag, "found valid install id in file:" + path);
+			getLogger().verbose(logTag, "found valid install id in file:" + path);
 			installId = libUUID::UUID(id);
 		} else {
-			logger.warn(logTag, "Invalid install id found in file: " + path);
+			getLogger().warn(logTag, "Invalid install id found in file: " + path);
 		}
 	}
 
 	if (installId.to_string().empty()) {
-		logger.verbose(logTag, "Install ID not found, generating a new one");
+		getLogger().verbose(logTag, "Install ID not found, generating a new one");
 		libUUID::UUID uuid = libUUID::UUID::generate();
 		installId = std::move(uuid);
 		// save the id to file
-		logger.verbose(logTag, "Saving install id to file: " + path);
+		getLogger().verbose(logTag, "Saving install id to file: " + path);
 		std::ofstream file(path);
 		file << installId.to_string();
 	}
@@ -125,6 +124,9 @@ void Platform::configure(const std::string_view appSecret) {
 			// TODO: make this thread safe
 			this->appSecret = secretMap.at("default");
 		}
+		// TODO: get the install ID
+		// TODO: init the application directory
+		// TODO: start the storage service
 
 		this->configured = true;
 	} else {
@@ -169,10 +171,6 @@ std::future<bool> Platform::setMaxStorageSizeAsync(size_t bytes) {
 bool Platform::setMaxStorageSize(size_t bytes) {
 	maxStorageSize = bytes;
 	return true;
-}
-
-core::logging::Logger &Platform::getLogger() {
-	return AppCenter::getInstance().getLogger();
 }
 
 } // namespace appcenter::sdk::core

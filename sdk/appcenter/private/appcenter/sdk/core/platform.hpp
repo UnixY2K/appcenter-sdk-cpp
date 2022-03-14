@@ -1,5 +1,6 @@
 #pragma once
 #include <appcenter/sdk/core/logger.hpp>
+#include <appcenter/sdk/service/internalService.hpp>
 #include <appcenter/sdk/service/service.hpp>
 #include <appcenter/util/mixin/singleton.hpp>
 #include <future>
@@ -10,7 +11,8 @@
 #include <libuuid/UUID.hpp>
 
 namespace appcenter::sdk::core {
-class Platform : public util::mixin::Singleton<Platform> {
+class Platform : public util::mixin::Singleton<Platform>,
+                 public service::InternalService<Platform> {
 	// todo: move this to the requests/ingestion layer
 	bool networkAllowed{true};
 	// todo: create a propper install id generator
@@ -26,6 +28,7 @@ class Platform : public util::mixin::Singleton<Platform> {
 	size_t maxStorageSize{0};
 
   public:
+	Platform() : InternalService<Platform>("AppCenter") {}
 	// Error message to display for unsupported targets
 	// const std::string_view getErrorMessage();
 
@@ -106,7 +109,7 @@ class Platform : public util::mixin::Singleton<Platform> {
 	 * @param service the service to start
 	 */
 	void start(service::Service *service);
-	
+
 	/**
 	 * @brief start the given services
 	 */
@@ -138,9 +141,6 @@ class Platform : public util::mixin::Singleton<Platform> {
 
 	// void unsetInstance();
   private:
-	static constexpr std::string_view logTag{"AppCenter"};
-	static core::logging::Logger &getLogger();
-
 	std::vector<sdk::service::Service *> services;
 };
 } // namespace appcenter::sdk::core
