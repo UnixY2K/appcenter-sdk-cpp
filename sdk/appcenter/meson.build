@@ -30,6 +30,7 @@ appcenter_sdk_core_srcs = [
     'src/sdk/core/platform.cpp',
     'src/sdk/ingestion/models/log.cpp',
     'src/sdk/ingestion/device.cpp',
+    'src/sdk/storage/storageService.cpp',
     'src/sdk/util/Date.cpp',
     'src/sdk/appcenter.cpp',
 ]

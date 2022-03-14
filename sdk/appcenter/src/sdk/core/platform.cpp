@@ -1,9 +1,10 @@
-#include "appcenter/sdk/constants.hpp"
 #include <algorithm>
 #include <appcenter/sdk/appcenter.hpp>
+#include <appcenter/sdk/constants.hpp>
 #include <appcenter/sdk/core/logger.hpp>
 #include <appcenter/sdk/core/platform.hpp>
 #include <appcenter/sdk/service/service.hpp>
+#include <appcenter/sdk/storage/storageService.hpp>
 #include <cfgpathpp/cfgpath.hpp>
 #include <filesystem>
 #include <fstream>
@@ -30,10 +31,9 @@ const libUUID::UUID Platform::getInstallId() {
 	}
 	getLogger().verbose(logTag, "Install ID not cached, retrieving.");
 	std::string appHash = cfgpathpp::generateAppHash();
-	std::string path =
-	    cfgpathpp::getAppDataPath(
-	        std::string(constants::appcenter_config_path) + "/" + appHash) +
-	    "/appid";
+	std::string path = cfgpathpp::getAppDataPath(
+	    std::string(constants::appcenter_config_path) + "/" + appHash +
+	    "/appid");
 	// check if the file exists
 	if (std::filesystem::exists(path)) {
 		// read the file
@@ -134,10 +134,13 @@ void Platform::configure(const std::string_view appSecret) {
 			// TODO: make this thread safe
 			this->appSecret = secretMap.at("default");
 		}
-		// TODO: get the install ID
+		// get the install ID
 		std::string installId = getInstallId().to_string();
-		// TODO: init the application directory
+		// init the application directory
+		std::string appPath = cfgpathpp::getAppDataPath(
+		    std::string(constants::appconfig_path.data()) + "/" + installId);
 		// TODO: start the storage service
+		storage::StorageService::getInstance().init(appPath);
 
 		this->configured = true;
 	} else {
