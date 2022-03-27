@@ -29,9 +29,9 @@ constexpr std::string_view unknown_locale_iso_code = "xx_XX";
 constexpr std::size_t maxDBStorageSize{10 * 1024 * 1024};
 // *** paths ***
 // appcenter config of the app
-constexpr std::string_view appconfig_path{"appcenter/native"};
+constexpr std::string_view appconfig_path{"AppCenter/native"};
 // appcenter path where the internal data such install id is stored
-constexpr std::string_view appcenter_config_path{"appcenter/config"};
+constexpr std::string_view appcenter_config_path{"AppCenter/config"};
 // *** files ***
 constexpr std::string_view database_name{"Logs.db"};
 } // namespace appcenter::sdk::constants

@@ -50,10 +50,10 @@ cpp_libcfgpath_dep = dependency(
                 fallback: ['cpp-libcfgpath', 'cpp_libcfgpath_dep']
 )
 
-# sqlite3 support
-sqlite3_dep = dependency(
-                'sqlite3',
-                fallback: ['sqlite3', 'sqlite3_dep']
+# SQLiteCpp
+sqlitecpp_dep = dependency(
+                'sqlitecpp_dep',
+                fallback: ['SQLiteCpp', 'sqlitecpp_dep']
 )
 
 thread_dep = dependency('threads')

@@ -43,7 +43,7 @@ appcenter_sdk_core_deps = [
     hinnant_date_dep,
     fmt_dep,
     cpp_libcfgpath_dep,
-    sqlite3_dep
+    sqlitecpp_dep
 ]
 
 ## add shared configuration to the SDK implementation

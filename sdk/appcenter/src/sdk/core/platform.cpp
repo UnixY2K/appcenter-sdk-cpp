@@ -32,12 +32,11 @@ const libUUID::UUID Platform::getInstallId() {
 	getLogger().verbose(logTag, "Install ID not cached, retrieving.");
 	std::string appHash = cfgpathpp::generateAppHash();
 	std::string path = cfgpathpp::getAppDataPath(
-	    std::string(constants::appcenter_config_path) + "/" + appHash +
-	    "/appid");
+	    std::string(constants::appcenter_config_path) + "/" + appHash);
 	// check if the file exists
 	if (std::filesystem::exists(path)) {
 		// read the file
-		std::ifstream file(path);
+		std::ifstream file(path + "/appid");
 		std::string id;
 		file >> id;
 		// check if the id is valid
@@ -58,7 +57,7 @@ const libUUID::UUID Platform::getInstallId() {
 		installId = std::move(uuid);
 		// save the id to file
 		getLogger().verbose(logTag, "Saving install id to file: " + path);
-		std::ofstream file(path);
+		std::ofstream file(path + "/appid");
 		file << installId.to_string();
 	}
 	return installId;
@@ -139,7 +138,7 @@ void Platform::configure(const std::string_view appSecret) {
 		// init the application directory
 		std::string appPath = cfgpathpp::getAppDataPath(
 		    std::string(constants::appconfig_path.data()) + "/" + installId);
-		// TODO: start the storage service
+
 		storage::StorageService::getInstance().init(appPath);
 
 		this->configured = true;
