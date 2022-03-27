@@ -1,0 +1,6 @@
+[wrap-git]
+url = https://gitlab.com/ninjaoflight5/sqlitecpp.git
+revision = meson-3.1.1
+
+[provide]
+dependency_names = sqlitecpp
