@@ -2,6 +2,8 @@
 
 namespace appcenter::core::logging {
 enum class LogLevel {
+	// SDK emits all possible level of logs + developer only logs
+	Devel,
 	// SDK emits all possible level of logs.
 	Verbose,
 	// SDK emits debug, info, warn, error and assert logs.

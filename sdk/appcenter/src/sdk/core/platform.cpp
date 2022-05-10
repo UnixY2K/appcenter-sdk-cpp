@@ -29,7 +29,7 @@ const libUUID::UUID Platform::getInstallId() {
 	if (!installId.isEmpty() && installId.isValid()) {
 		return installId;
 	}
-	getLogger().verbose(logTag, "Install ID not cached, retrieving.");
+	getLogger().devel(logTag, "Install ID not cached, retrieving.");
 	std::string appHash = cfgpathpp::generateAppHash();
 	std::string path = cfgpathpp::getAppDataPath(
 	    std::string(constants::appcenter_config_path) + "/" + appHash);
@@ -41,7 +41,7 @@ const libUUID::UUID Platform::getInstallId() {
 		file >> id;
 		// check if the id is valid
 		if (libUUID::UUID::is_valid(id)) {
-			getLogger().verbose(logTag,
+			getLogger().devel(logTag,
 			                    "found valid install id in file:" + path);
 			installId = libUUID::UUID(id);
 		} else {
@@ -78,7 +78,7 @@ const bool Platform::isConfigured() const { return configured; }
 void Platform::configure(const std::string_view appSecret) {
 	if (!isConfigured()) {
 
-		getLogger().verbose(logTag, "Configuring App Center SDK.");
+		getLogger().devel(logTag, "Configuring App Center SDK.");
 
 		// the secret map
 		std::unordered_map<std::string, libUUID::UUID> secretMap;
@@ -129,7 +129,7 @@ void Platform::configure(const std::string_view appSecret) {
 		}
 		if (!appSecretFound) {
 			// we will use the default app secret
-			getLogger().debug(logTag, "Using default app secret.");
+			getLogger().devel(logTag, "Using default app secret.");
 			// TODO: make this thread safe
 			this->appSecret = secretMap.at("default");
 		}

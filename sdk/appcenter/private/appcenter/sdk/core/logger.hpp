@@ -11,7 +11,7 @@ namespace appcenter::sdk::core::logging {
 using LogLevel = appcenter::core::logging::LogLevel;
 
 constexpr std::string_view log_level_names[] = {
-    "VERBOSE", "DEBUG", "INFO", "WARN", "ERROR", "ASSERT", "NONE"};
+	"DEVEL", "VERBOSE", "DEBUG", "INFO", "WARN", "ERROR", "ASSERT", "NONE"};
 
 constexpr std::string_view getLogLevelName(LogLevel level) {
 	// check bounds
@@ -56,6 +56,14 @@ class Logger : public util::mixin::Singleton<Logger> {
 	 * @param level The new Log Level used by the SDK
 	 */
 	void setLogLevel(LogLevel level);
+
+	/**
+	 * @brief Writes a log at the LogLevel.Devel level.
+	 * @note To track events, use Analytics.TrackEvent
+	 * @param tag Log tag.
+	 * @param message Message.
+	 */
+	void devel(const std::string_view tag, const std::string_view message);
 
 	/**
 	 * @brief Writes a log at the LogLevel.Verbose level.

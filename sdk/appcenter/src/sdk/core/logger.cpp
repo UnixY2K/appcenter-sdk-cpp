@@ -15,6 +15,10 @@ LogLevel Logger::getLogLevel() { return m_logLevel; }
 
 void Logger::setLogLevel(LogLevel level) { m_logLevel = level; }
 
+void Logger::devel(const std::string_view tag, const std::string_view message) {
+	log(LogLevel::Devel, tag, message);
+}
+
 void Logger::verbose(const std::string_view tag,
                      const std::string_view message) {
 	log(LogLevel::Verbose, tag, message);

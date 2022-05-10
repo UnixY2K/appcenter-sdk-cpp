@@ -8,9 +8,15 @@
 namespace appcenter::sdk::storage {
 bool StorageService::init(const std::string_view path) {
 	if (!hasStarted()) {
-		getLogger().verbose(logTag, "Initializing storage service");
+		getLogger().devel(logTag, "Initializing storage service");
 		std::string dbPath =
 		    std::string(path) + "/" + std::string(constants::database_name);
+
+		// check if the database exists
+		if (!std::filesystem::exists(dbPath)) {
+			getLogger().devel(logTag, "Database does not exist, creating");
+			getLogger().debug(logTag, "Creating database at: " + dbPath);
+		}
 
 		// open/create the database file
 		database = new SQLite::Database(dbPath, SQLite::OPEN_READWRITE |
@@ -20,7 +26,7 @@ bool StorageService::init(const std::string_view path) {
 			SQLite::Transaction transaction(*database);
 			database->exec(create_table_sql.data());
 			transaction.commit();
-			getLogger().verbose(logTag, "Storage service initialized");
+			getLogger().devel(logTag, "Storage service initialized");
 			return true;
 		} catch (const SQLite::Exception &e) {
 			getLogger().error(logTag, "Failed to initialize database: " +
