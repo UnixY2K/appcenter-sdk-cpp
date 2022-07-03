@@ -165,6 +165,9 @@ void Platform::start(const std::vector<service::Service *> services) {
 			start(service);
 		}
 	}
+	else{
+		getLogger().warn(logTag, "SDK is not configured.");
+	}
 }
 
 void Platform::start(const std::string_view appSecret,
