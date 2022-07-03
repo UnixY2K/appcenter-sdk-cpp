@@ -24,13 +24,13 @@ App Center SDK may/will need to expose some internal utilites to its internal co
 An example of this services are the following:
 
 - Util methods like UUID generation. [libuuid](https://github.com/ninjaoflight/cpp-libuuid)
-- A Date library.
+- A Date library. [hinnant-date](https://github.com/HowardHinnant/date)
 - A JSON parsing library. [nlohmann-json](https://json.nlohmann.me/)
 - HTTP request library. [restclient-cpp(fork)](https://github.com/ninjaoflight/restclient-cpp)
 - A internal Logger and error mechanism.
 - Platform Specific information collector.
 - Exception handling/ error reporting mechanism.
-- SQLite database library.
+- SQLite database library. [sqlitecpp (fork)](https://github.com/ninjaoflight/SQLiteCpp)
 - Test Cloud checker.
 - SDK Information.
 - App Secret provider. (internal, app secrets implemented by user)
